@@ -1,0 +1,49 @@
+{% load static %}
+
+<div class="align-content-center position-sticky top-0 overflow-hidden"
+     style="height: 80px; background-color: #ffffff; z-index: 1000; width: 100%;">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container px-2 d-flex align-items-center">
+
+            <!-- Logo on the far left -->
+            <a class="navbar-brand me-auto" href="#">
+                <img src="{% static 'img/Screenshot__47_-removebg-preview.png' %}" alt="..." class="logo_image">
+            </a>
+
+            <!-- Navbar Toggler (for mobile view) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible Content (Links and Button) -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="container-fluid d-flex justify-content-center">
+                    <!-- Center the links -->
+                    <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
+                        <li class="nav-item"><a class="nav-link active nav_item_text" aria-current="page" href="#">Products</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link active nav_item_text" aria-current="page" href="#">Plans
+                            &
+                            Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link active nav_item_text" aria-current="page" href="#">Explore</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link active nav_item_text" aria-current="page"
+                                                href="#">Learn</a></li>
+                        <li class="nav-item"><a class="nav-link active nav_item_text" aria-current="page"
+                                                href="#">Account</a></li>
+                    </ul>
+
+                    <!-- "Get a Quote" Button on far right in large screens -->
+                    <div class="d-flex ms-lg-auto">
+                        <a href="#">
+                            <button class="curved-button">Get a Quote</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+</div>

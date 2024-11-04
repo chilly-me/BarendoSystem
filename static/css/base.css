@@ -1,0 +1,735 @@
+/*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
+
+/* main.css 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+.custom-border {
+    border-color: #28a745; /* Set border color to green */
+}
+
+.custom-border:focus {
+    border-color: #9cff9c;
+    box-shadow: 0 0 2px #9cff9c;/
+}
+
+.top_bar {
+  height: 46px;
+  background-color: #EFFFF3;
+  width: 100%;
+}
+
+.nav_item_text {
+  font-family: Lekton, monospace;
+  font-size: 24px;
+}
+
+
+.social_media_icons {
+  height: 13px;
+  width: 18px;
+  margin-left: 30px;
+}
+
+.top_bar_icons {
+  height: 13px;
+  width: 10px;
+}
+
+.top_bar_text {
+  font-family: "Roboto Light", serif;
+  font-size: 10px;
+}
+
+.curved-button {
+  height: 40px;
+  width: 132px;
+  background-color: green; /* Green fill */
+  color: white; /* White text color */
+  padding: 0; /* Padding for the button */
+  border: none; /* Remove border */
+  border-radius: 30px; /* Curved edges (higher value for more curve) */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.curved-button:hover {
+  background-color: #097302; /* Darken the button on hover */
+}
+
+
+
+.text1_over_image {
+  position: absolute;
+  /*margin-top: 30%;*/
+  top: 20%;
+  left: 10%;
+  color: white;
+  font-family: SimSun, monospace;
+}
+
+.text1_over_image h5 {
+  font-size: 13px;
+}
+
+/* For screens wider than 576px (e.g., small devices like tablets) */
+@media (min-width: 576px) {
+  .text1_over_image h5 {
+    font-size: 17px;
+  }
+}
+
+/* For screens wider than 768px (e.g., medium devices like laptops) */
+@media (min-width: 768px) {
+  .text1_over_image {
+    font-size: 25px;
+  }
+}
+
+.text2_over_image {
+  position: absolute;
+  /*margin-top: 30%;*/
+  top: 35%;
+  left: 7%;
+  color: white;
+  font-size: 35px;
+  font-family: "Segoe UI Emoji", monospace;
+}
+
+.text2_over_image h3 {
+  font-size: 20px;
+}
+
+@media (min-width: 576px) {
+  .text2_over_image h3 {
+    font-size: 35px;
+  }
+}
+
+/* For screens wider than 768px (e.g., medium devices like laptops) */
+@media (min-width: 768px) {
+  .text2_over_image h3 {
+    font-size: 50px;
+  }
+}
+
+.curved-button2 {
+  height: 30px;
+  width: 100px;
+  position: absolute;
+  /*margin-top: 30%;*/
+  top: 65%;
+  left: 15%;
+  background-color: transparent;
+  color: white; /* White text color */
+  padding: 0; /* Padding for the button */
+  border: 1px solid #444444;
+  border-radius: 30px; /* Curved edges (higher value for more curve) */
+  font-size: 12px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.curved-button2:hover {
+  background-color: #097302; /* Darken the button on hover */
+}
+
+@media (min-width: 576px) {
+  .curved-button2 {
+    top: 60%;
+    width: 130px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+/* For screens wider than 768px (e.g., medium devices like laptops) */
+@media (min-width: 768px) {
+  .curved-button2 {
+    height: 40px;
+    width: 132px;
+    font-size: 16px;
+  }
+}
+
+/*!* For screens wider than 992px (e.g., large devices like desktops) *!*/
+/*@media (min-width: 992px) {*/
+/*  .text1_over_image {*/
+/*    font-size: 35px;*/
+/*  }*/
+/*}*/
+
+.logo_image {
+  height: 51px;
+  width: 188px;
+}
+
+
+.column-border {
+  border-right: 2px solid black; /* Adjust thickness and color */
+}
+
+/* Remove the right border from the last column */
+.row .col-md-4:last-child {
+  border-right: none;
+}
+
+/* Optional: Add some padding to the columns for spacing */
+.col-md-4 {
+  padding: 20px;
+}
+
+.information-header h6 {
+  font-size: 20px;
+  font-wight: 500;
+  font-family: Lancelot, sans-serif;
+}
+
+/*This is custom CSS for the information page*/
+.text-justify {
+  text-align: justify;
+}
+
+@media (max-width: 576px) {
+  .pg2_header_text {
+    font-size: 1.5rem;
+  }
+
+  .information-header p {
+    font-size: 1rem;
+  }
+
+  .top_bar_icons {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.pg_2 img {
+  max-width: 100%; /* Ensures images do not exceed their container */
+  height: auto; /* Maintains aspect ratio */
+}
+
+.column-border {
+  border-right: 0; /* Adjust thickness and color */
+}
+
+.column-border2 {
+  border-right: 0; /* Adjust thickness and color */
+}
+
+@media (min-width: 576px) {
+  .column-border {
+    border-right: 2px solid black; /* Adjust thickness and color */
+  }
+
+  .column-border2 {
+    border-right: 2px solid black; /* Adjust thickness and color */
+  }
+}
+
+.curved-button3 {
+  height: 40px;
+  width: 220px;
+  background-color: transparent;
+  color: black; /* White text color */
+  font-weight: bold;
+  padding: 0; /* Padding for the button */
+  border: 1px solid #000000;
+  border-radius: 30px; /* Curved edges (higher value for more curve) */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.curved-button2:hover {
+  background-color: #097302; /* Darken the button on hover */
+}
+
+.small_text {
+  font-family: 'Sorts Mill', serif;
+}
+
+.testimonials h5 {
+  font-family: 'Shadows Into Light Two', serif;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+/*.testimonials i {*/
+/*  width: 30px;*/
+/*  height: 20px;*/
+/*}*/
+
+.testimonials h6 {
+  font-family: 'Snippet', sans-serif;
+  font-size: 20px
+}
+
+@media (min-width: 576px) {
+  .testimonials h6 {
+    font-size: 25px;
+  }
+}
+
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-color: black; /* Set the background color to black */
+  border-radius: 50%; /* Optional: make it circular */
+  width: 50px; /* Adjust width as necessary */
+  height: 50px; /* Adjust height as necessary */
+}
+
+.carousel-indicators {
+  bottom: -40px; /* Adjust this value to position the indicators below the carousel */
+}
+
+.carousel-indicators li {
+  width: 12px; /* Width of the indicators */
+  height: 12px; /* Height of the indicators */
+  background-color: #ccc; /* Inactive indicator color */
+  border-radius: 50%; /* Make them circular */
+  margin: 0 5px; /* Space between indicators */
+  opacity: 1; /* Ensure the indicators are fully opaque */
+}
+
+.carousel-indicators .active {
+  background-color: #007bff; /* Active indicator color */
+}
+
+
+.pg-3 {
+  background-color: #F6FFF8;
+  padding: 30px;
+}
+
+.pg-3-title {
+  font-size: 30px;
+}
+
+@media (min-width: 576px) {
+  .pg-3-title {
+    font-size: 45px;
+  }
+}
+
+/* For screens wider than 768px (e.g., medium devices like laptops) */
+@media (min-width: 768px) {
+  .pg-3-title {
+    font-size: 55px;
+  }
+}
+
+.pg-3_images {
+  border-radius: 25px;
+}
+
+.pg-4 {
+  background-image: url("andreas-schantl-rJs_JSRo21M-unsplash.jpg");
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Ensures the image does not repeat */
+
+  top: 0;
+  left: 0;
+  /*width: 100vw; !* Full width of the viewport *!*/
+  height: 100vh; /* Full height of the viewport */
+  z-index: 0;
+}
+
+.pg-4-title {
+  font-size: 30px;
+}
+
+@media (min-width: 576px) {
+  .pg-4-title {
+    font-size: 45px;
+  }
+}
+
+/* For screens wider than 768px (e.g., medium devices like laptops) */
+@media (min-width: 768px) {
+  .pg-4-title {
+    font-size: 55px;
+  }
+}
+
+
+@media (min-height: 600px) {
+  .my_form {
+    padding-top: 5%;
+  }
+  .pg-4-title{
+    padding-top: 5%;
+  }
+  .experts_text{
+    padding-top:10%;
+  }
+
+}
+@media (min-height: 800px) {
+  .my_form {
+    padding-top: 15%;
+  }
+
+
+}
+
+
+.curved-button4 {
+  height: 40px;
+  width: 132px;
+  background-color: #838383;
+  color: white; /* Black text color */
+  font-family: Lancelot, sans-serif;
+  padding: 0; /* Padding for the button */
+  border: none; /* Remove border */
+  border-radius: 30px; /* Curved edges (higher value for more curve) */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.curved-button4:hover {
+  background-color: #ededed; /* Darken the button on hover */
+}
+
+.pg-5 {
+  background-image: linear-gradient(to right, black 20%, transparent 80%), url("Screenshot (61).png");
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Ensures the image does not repeat */
+
+  top: 0;
+  left: 0;
+  /*width: 100vw; !* Full width of the viewport *!*/
+  height: 100vh; /* Full height of the viewport */
+  z-index: 0;
+}
+
+.curved-button5 {
+  height: 40px;
+  width: 132px;
+  background-color: transparent;
+  color: white; /* Black text color */
+  font-family: Lancelot, sans-serif;
+  padding: 0; /* Padding for the button */
+  border: 2px solid white; /* Remove border */
+  border-radius: 30px; /* Curved edges (higher value for more curve) */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.curved-button5:hover {
+  background-color: #ededed; /* Darken the button on hover */
+}
+
+.curved-button6 {
+  height: 50px;
+  width: 150px;
+  margin: 10px;
+  background-color: transparent;
+  color: white; /* Black text color */
+  font-family: Lancelot, sans-serif;
+  padding: 0; /* Padding for the button */
+  border: 2px solid white; /* Remove border */
+  border-radius: 30px; /* Curved edges (higher value for more curve) */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.curved-button5:hover {
+  background-color: #ededed; /* Darken the button on hover */
+}
+
+
+.footer {
+  color: #212529;
+  background-color: #ffffff;
+  font-size: 14px;
+  position: relative;
+}
+
+.my-caret {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px; /* Set the width for the circular border */
+  height: 30px; /* Set the height for the circular border */
+  border: 2px solid white; /* White border */
+  border-radius: 50%; /* Makes the border circular */
+  margin-left: 5px; /* Space between text and icon */
+  color: white; /* Icon color */
+  transition: transform 0.3s ease-in-out; /* Optional: smooth rotation */
+}
+
+/* Optional: rotate icon when collapsed */
+.collapsed .my-caret {
+  transform: rotate(90deg);
+}
+
+
+/* Puts the image behind other content */
+
+
+/* For screens wider than 768px (e.g., medium devices like laptops) */
+/*@media (min-width: 768px) {*/
+/*  .column-border {*/
+/*    border-right: 0; !* Adjust thickness and color *!*/
+/*  }*/
+
+/*  .column-border2 {*/
+/*    border-right: 0; !* Adjust thickness and color *!*/
+/*  }*/
+/*}*/
+
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+  resize: vertical;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide visually and from screen readers
+ */
+
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  /* 1 */
+}
+
+/*
+ * Extends the .visually-hidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visually-hidden.focusable:active,
+.visually-hidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  white-space: inherit;
+  width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+  visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * The use of `table` rather than `block` is only necessary if using
+ * `::before` to contain the top-margins of child elements.
+ */
+
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: #fff !important;
+    color: #000 !important;
+    /* Black prints faster */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+
+  /*
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+

@@ -1,0 +1,9 @@
+input.form-control.custom-border {
+    border-color: #28a745;
+!important
+}
+
+input.form-control.custom-border:focus {
+    border-color: #9cff9c !important;
+    box-shadow: 0 0 5px #9cff9c !important;
+}

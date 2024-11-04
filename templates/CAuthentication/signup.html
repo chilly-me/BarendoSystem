@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"/>
+
+</head>
+<body>
+<div class="my-4 d-flex justify-content-center align-items-center">
+    <img class="logo-image" src="{% static 'img/Screenshot__47_-removebg-preview.png' %}" alt="...">
+</div>
+<div class="container col-md-10 col-sm-12 col-lg-8 mx-auto">
+    <section class="mx-auto my-5 row">
+        <div class="card card-form mt-2 mb-4">
+            <div class="card-body rounded-top white darken-4">
+                <h3 class="font-weight-bold text-center text-uppercase my-4 display-6 display-md-4">Sign up</h3>
+                <form class="pb-5 px-2" action="{% url 'CAuthentication:signup' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row mb-4">
+                        <div class="col-2 col-md-1 d-flex align-items-center justify-content-center">
+                            <i class="far fa-star fa-lg text-white fa-fw"></i>
+                        </div>
+                        <div class="col-10 col-md-11">
+                            <input required type="text" id="first_name" name="first_name" class="form-control"
+                                   placeholder="First name"/>
+                        </div>
+
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-2 col-md-1 d-flex align-items-center justify-content-center">
+                            <i class="far fa-star fa-lg text-white fa-fw"></i>
+                        </div>
+                        <div class="col-10 col-md-11">
+                            <input type="text" id="last_name" name="last_name" class="form-control"
+                                   placeholder="Second name"/>
+
+                        </div>
+
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-2 col-md-1 d-flex align-items-center justify-content-center">
+                            <i class="far fa-star fa-lg text-white fa-fw"></i>
+                        </div>
+                        <div class="col-10 col-md-11">
+                            <input type="email" id="email" name="email" class="form-control"
+                                   placeholder="email"/>
+
+                        </div>
+
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-2 col-md-1 d-flex align-items-center justify-content-center">
+                            <i class="far fa-envelope fa-lg text-white fa-fw"></i>
+                        </div>
+                        <div class="col-10 col-md-11">
+                            <input required type="text" id="username" name="username" class="form-control"
+                                   placeholder="Username"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 col-md-1 d-flex align-items-center justify-content-center">
+                            <i class="far fa-star fa-lg text-white fa-fw"></i>
+                        </div>
+                        <div class="col-10 col-md-11">
+                            <input required type="password" id="password1" name="password1" class="form-control"
+                                   placeholder="Password"/>
+                            <span class="form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>
+
+                        </div>
+
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-2 col-md-1 d-flex align-items-center justify-content-center">
+                            <i class="far fa-star fa-lg text-white fa-fw"></i>
+                        </div>
+                        <div class="col-10 col-md-11">
+                            <input required type="password" id="password2" oninput="checkPasswords()" name="password2" class="form-control"
+                                   placeholder="Rewrite password"/>
+                            <span class="form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>
+                            <div class="form-check mt-2">
+                                <input required class="form-check-input" type="checkbox" onclick="HidePassword()">
+                                <label class="form-check-label ps-4">Show Password</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-form-2 text-center">
+                        <button class="btn btn-outline-success btn-rounded btn-block my-4 z-depth-0" type="submit">
+                            Sign up
+                        </button>
+                        <p class="lead">or sign up with:</p>
+                        <div class="d-flex justify-content-center">
+                            <i class="bi bi-facebook green-accent-text px-2 display-6"></i>
+                            <i class="bi bi-google green-accent-text px-2 display-6"></i>
+                        </div>
+                        <br>
+                        <div class="form-check red-checkbox my-3 d-flex justify-content-center">
+                            <input required class="form-check-input d-flex justify-content-center" type="checkbox" value=""
+                                   id="flexCheckDefault1" checked/>
+                            <label class="ps-4 form-check-label" for="flexCheckDefault1">
+                                Subscribe to our newsletter
+                            </label>
+                        </div>
+                        <hr>
+                        <p class="lead">Have an account? <a href="{% url 'CAuthentication:login' %}"
+                                                            class="green-accent-text">Login</a></p>
+                        <hr>
+                        <p class="lead">By clicking <em>Sign up</em> you agree to our
+                            <a class="green-accent-text" href="#!" target="_blank">terms of service</a> and
+                            <a class="green-accent-text" href="#!" target="_blank">privacy policy</a>.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+</body>
+<script>
+    function HidePassword() {
+        var password1 = document.getElementById("password1");
+        var password2 = document.getElementById("password2");
+        if (password1.type === "password" || password2.type === 'password') {
+            password1.type = "text";
+            password2.type = "text";
+        } else {
+            password1.type = "password";
+            password2.type = "password";
+        }
+
+    }
+    function checkPasswords() {
+        const password1 = document.getElementById("password1");
+        const password2 = document.getElementById("password2");
+        if (password1.value === password2.value && password1.value !== '') {
+            password2.style.borderColor = "#9cff9c";
+            password2.style.boxShadow = "#9cff9c";
+        }else{
+            password2.style.borderColor = "red";
+            password2.style.boxShadow = "red";
+        }
+    }
+</script>
+</html>
