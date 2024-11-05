@@ -101,8 +101,8 @@
                         <p class="lead">or sign up with:</p>
                         <div class="d-flex justify-content-center">
                             {% load socialaccount %}
-                            <a href="{% provider_login_url 'google' %}?next={% url 'CAuthentication:home' %}"><i class="bi bi-facebook green-accent-text px-2 display-6"></i></a>
-                            <i class="bi bi-google green-accent-text px-2 display-6"></i>
+                            <i class="bi bi-facebook green-accent-text px-2 display-6"></i>
+                            <a href="{% provider_login_url 'google' %}?next=/"><i class="bi bi-google green-accent-text px-2 display-6"></i></a>
                         </div>
                         <br>
                         <div class="form-check red-checkbox my-3 d-flex justify-content-center">

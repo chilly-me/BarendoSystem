@@ -1,0 +1,52 @@
+{% extends "socialaccount/base_entrance.html" %}
+{% load i18n %}
+{% load allauth %}
+{% block head_title %}
+    {% trans "Sign In" %}
+{% endblock head_title %}
+{% block content %}
+    <div class="container col-md-10 col-sm-12 col-lg-8 mx-auto">
+        <section class="mx-auto my-5 row">
+            <div class="card card-form mt-2 mb-4">
+                <div class="card-body rounded-top white darken-4">
+                    {% if process == "connect" %}
+                        {% element h1 %}
+                            {% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}
+                        {% endelement %}
+                        {% element p %}
+                            {% blocktrans with provider.name as provider %}You are about to connect a new third-party
+                                account from
+                                {{ provider }}.{% endblocktrans %}
+                        {% endelement %}
+                    {% else %}
+                        <h3 class="font-weight-bold text-center my-4 display-6 display-md-4">Sign in
+                            with {{ provider.name }}</h3>
+                        <p class="text-center my-4 display-md-4"> You are about to sign in
+                            using a third-party account from
+                            {{ provider }}</p>
+                    {% endif %}
+                    <div class="text-center">
+                        {% element form method="post" no_visible_fields=True %}
+                            {% slot actions %}
+                                {% csrf_token %}
+                                <div class="w-25 mx-auto d-flex justify-content-center align-items-center"
+                                     style="border: 2px solid grey; border-radius: 15px;">
+                                    <button type="submit" class="btn d-flex align-items-center text-center"
+                                            style="background: none; border: none;">
+                                        <i class="bi bi-google green-accent-text px-2 display-6"></i>
+                                        <h6 class="mb-0">Continue</h6>
+                                    </button>
+                                </div>
+
+                                </a>
+                            {% endslot %}
+                        {% endelement %}
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+{% endblock content %}

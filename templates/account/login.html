@@ -1,0 +1,96 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% load socialaccount %}
+{% providers_media_js %}
+{% block head_title %}
+    Sign In | Barendo Systems
+{% endblock head_title %}
+{% block content %}
+    {% if not SOCIALACCOUNT_ONLY %}
+        <div class="container col-md-10 col-sm-12 col-lg-8 mx-auto">
+            <section class="mx-auto my-5 row">
+                <div class="card card-form mt-2 mb-4">
+                    <div class="card-body rounded-top white darken-4">
+                        <h3 class="font-weight-bold text-center text-uppercase my-4 display-6 display-md-4">Login</h3>
+                        <form class="pb-5 px-2" action="{% url 'CAuthentication:login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row mb-4">
+                                <div class="col-2 col-md-1 d-flex align-items-center justify-content-center">
+                                    <i class="far fa-envelope fa-lg text-white fa-fw"></i>
+                                </div>
+                                <div class="col-10 col-md-11">
+                                    <input type="text" id="UsernameField" name="UsernameField" class="form-control"
+                                           placeholder="Username"/>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="col-2 col-md-1 d-flex align-items-center justify-content-center">
+                                    <i class="far fa-star fa-lg text-white fa-fw"></i>
+                                </div>
+                                <div class="col-10 col-md-11">
+                                    <input type="password" id="passwordField" name="passwordField" class="form-control"
+                                           placeholder="Password"/>
+                                    <small class="form-text text-white">At least 8 characters and 1 digit</small>
+                                    <div class="form-check mt-2">
+                                        <input class="form-check-input" type="checkbox" onclick="HidePassword()">
+                                        <label class="form-check-label ps-4">Show Password</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-form-2 text-center">
+                                <button class="btn btn-outline-success btn-rounded btn-block my-4 z-depth-0"
+                                        type="submit">
+                                    Login
+                                </button>
+
+                                <p class="lead">or Login with:</p>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{% provider_login_url 'facebook' method='oauth2' %}">
+                                        <i class="bi bi-facebook green-accent-text px-2 display-6"></i>
+                                    </a>
+                                    <a href="{% provider_login_url 'google' %}"><i
+                                            class="bi bi-google green-accent-text px-2 display-6"></i></a>
+                                </div>
+
+                                <hr>
+                                <p class="lead">Don't have an account? <a href="{% url 'account_signup' %}"
+                                                                          class="green-accent-text">Sign Up</a></p>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    {% endif %}
+    <script>
+        function HidePassword() {
+            var password1 = document.getElementById("password1");
+            var password2 = document.getElementById("password2");
+            if (password1.type === "password" || password2.type === 'password') {
+                password1.type = "text";
+                password2.type = "text";
+            } else {
+                password1.type = "password";
+                password2.type = "password";
+            }
+
+        }
+
+        function checkPasswords() {
+            const password1 = document.getElementById("password1");
+            const password2 = document.getElementById("password2");
+            if (password1.value === password2.value && password1.value !== '') {
+                password2.style.borderColor = "#9cff9c";
+                password2.style.boxShadow = "#9cff9c";
+            } else {
+                password2.style.borderColor = "red";
+                password2.style.boxShadow = "red";
+            }
+        }
+    </script>
+
+{% endblock content %}
+
