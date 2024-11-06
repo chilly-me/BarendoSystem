@@ -1,0 +1,20 @@
+.link-div {
+    text-decoration: none;
+    color: inherit;
+}
+
+.link-div div {
+    padding: 5px 5px 5px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.link-div:hover div {
+    background-color: #ededed;
+}
+
+
+
+.form-control:focus {
+    border-color: green;
+    box-shadow: 0 0 4px green;
+}

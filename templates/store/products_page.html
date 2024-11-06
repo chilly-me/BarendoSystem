@@ -1,0 +1,154 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}
+    Products Page
+{% endblock %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/products_page.css' %}">
+{% endblock %}
+{% block content %}
+    {% include 'common/navigation.html' %}
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-2 d-md-block d-flex order-2 order-md-1">
+                    <img src="{% static 'img/Products/lithium battery1.png' %}" alt="" class="p-3 img-fluid w-100">
+                    <img src="{% static 'img/Products/lithium battery2.png' %}" alt="" class="p-3 img-fluid w-100">
+                    <img src="{% static 'img/Products/lithium battery3.png' %}" alt="" class="p-3 img-fluid w-100">
+                </div>
+                <div class="col-md-5 order-1 order-md-2"><img class="card-img-top mb-5 mb-md-0"
+                                                              src="{% static 'img/Products/lithium battery.png' %}"
+                                                              alt="..."/></div>
+                <div class="col-md-5 position-relative order-3">
+                    <div class="badge bg-dark text-white position-absolute"
+                         style="top: 0.5rem; right: 0.5rem">Batteries
+                    </div>
+                    <div class="small mb-1">SKU: BST-498</div>
+                    <h1 class="display-5 fw-bolder">Lithium Battery</h1>
+                    <div class="fs-5 mb-5">
+
+                        {% if product.is_on_sale %}
+                            <span class="text-muted text-decoration-line-through">Ksh. 5,000</span>
+                            &nbsp;&nbsp;&nbsp;<span>Ksh. 5,000</span>
+                        {% else %}
+                            Ksh. 5,000
+                        {% endif %}
+                    </div>
+
+
+                    <div class="d-flex">
+                        <h6 class="mx-3 my-2"><strong>Quantity: </strong></h6>
+                        <select class="form-select text-center " style="max-width: 5rem"
+                                aria-label="Default select example" id="cart-qty">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+
+                        </select>
+                        <button class="btn btn-outline-success flex-shrink-0 mx-5" type="button" value="{{ product.id }}"
+                                id="add-cart">
+                            <i class="bi-cart-fill me-1"></i>
+                            Add to cart
+                        </button>
+                    </div>
+                    <hr>
+                    <div class="mt-1 mt-md-4">
+                        <h4 class="lead text-start text-md-center text-dark-emphasis"><strong> Product
+                            Description </strong></h4>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto error ex
+                            exercitationem expedita hic, ipsum neque officiis pariatur perspiciatis, quis, quos
+                            repellendus velit voluptate! Accusantium consequatur exercitationem facere obcaecati
+                            quisquam?</p>
+                    </div>
+                    <hr>
+                    <div class="mt-1 mt-md-4">
+                        <h4 class="lead text-start text-md-center text-dark-emphasis"><strong>Specifications</strong>
+                        </h4>
+                        <ul class="" style="list-style-type: square;">
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>consectetur adipisicing elit.</li>
+                            <li>ipsum neque officiis pariatur perspiciatis,</li>
+                            <li>repellendus velit voluptate!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder mb-4 text-start text-md-center">Related products</h2>
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Sale badge-->
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{% static 'img/Products/lithium battery.png' %}" alt="..."/>
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">Lithium Battery</h5>
+                                <!-- Product reviews-->
+                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                </div>
+                                <!-- Product price-->
+                                &nbsp;
+                                Ksh. 5,000
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                                        href="">Add to
+                                cart</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Sale badge-->
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{% static 'img/Products/lithium battery.png' %}" alt="..."/>
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">Lithium Battery</h5>
+                                <!-- Product reviews-->
+                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                </div>
+                                <!-- Product price-->
+                                &nbsp;
+                                Ksh. 5,000
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                                        href="">Add to
+                                cart</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

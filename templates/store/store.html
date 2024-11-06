@@ -1,0 +1,136 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}
+    Products
+{% endblock %}
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/store.css' %}">
+{% endblock %}
+{% block content %}
+    {% include 'common/navigation.html' %}
+    <header style="position: relative; height: 150px; background-image: url('{% static "img/caruna_aurinkopaneelit_tehtaan_katolla_2019_02_pieni.jpg" %}'); background-position: center; background-size: cover;">
+        <!-- Green tint overlay -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,71,0,0.4); z-index: 1;"></div>
+
+        <!-- Centered text -->
+        <div class="h-100 d-flex justify-content-center align-items-center text-white"
+             style="position: relative; z-index: 2;">
+            <h2 style="font-family: Lekton, monospace;">Our Products</h2>
+        </div>
+    </header>
+
+    <div style="background-color: #f4f4f4">
+
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="col-md-6">
+                <div class="input-group mt-4">
+            <span class="input-group-text">
+                <i class="bi bi-search"></i>
+            </span>
+                    <input type="text" class="form-control" placeholder="Search anything...">
+                    <button class="btn btn-outline-success" type="button">Search</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row p-3 p-md-5">
+            <section class="col-12 col-md-3 "
+                     style="margin-inline-end: 2%; margin-block-end: 8%; background-color: white" ;>
+                <div class="">
+                    <h5 class="p-3">CATEGORY</h5>
+                    <a href="#" class="link-div w-100">
+                        <div>
+                            <p>Batteries</p>
+                        </div>
+                    </a>
+                    <a href="#" class="link-div w-100">
+                        <div>
+                            <p>Charge Controllers</p>
+                        </div>
+                    </a>
+                    <a href="#" class="link-div w-100">
+                        <div>
+                            <p>Inverters</p>
+                        </div>
+                    </a>
+                    <a href="#" class="link-div w-100">
+                        <div>
+                            <p>Solar Accessories</p>
+                        </div>
+                    </a>
+                    <a href="#" class="link-div w-100">
+                        <div>
+                            <p>Solar Flood light</p>
+                        </div>
+                    </a>
+                    <a href="#" class="link-div w-100">
+                        <div>
+                            <p>Solar Panels</p>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <label for="customRange1" class="form-label">Example range</label>
+                    <input type="range" class="form-range" id="customRange1">
+                </div>
+            </section>
+            <section class="col-12 col-md-8 p-3" style="border-radius: 2px;background-color: white">
+                <div class="d-flex justify-content-between align-items-center px-3">
+                    <div>
+                        <p class="lead" style="font-size: 10px">(4545) items found</p>
+                    </div>
+                    <div>
+                        <p class="lead" style="font-size: 13px">Sort items by <span><i
+                                class="bi bi-caret-down"></i></span></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <hr>
+                    <div class="col-lg-4 col-12 col-sm-6 mb-4 mb-md-2">
+                        <div class="card h-100 p-2 p-md-4">
+                            <!-- Sale badge-->
+                            <div class="badge bg-dark text-white position-absolute"
+                                 style="top: 0.5rem; right: 0.5rem">Sale
+                            </div>
+                            <!-- Product image-->
+                            <img class="card-img-top img-fluid" src="{% static 'img/Products/lithium battery.png' %}"
+                                 alt="..."/>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder fs-5">Lithium Battery</h5>
+                                    <!-- Product reviews-->
+                                    <div class="d-flex justify-content-center small text-warning mb-2">
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                        <div class="bi-star-fill"></div>
+                                    </div>
+                                    <!-- Product price-->
+                                    <p class="fs-6">Ksh. 5, 000</p>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-between">
+                                <div class="text-center"><a class="btn btn-outline-success mt-auto fs-6"
+                                                            href="{% url 'store:products_page' %}">View More</a></div>
+                                <button class="btn btn-outline-dark">
+                                    <i class="bi-cart-fill me-1"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+{% endblock %}
+
+<i class="bi-cart-fill me-1"></i>
+Cart
+<span class="badge bg-dark text-white ms-1 rounded-pill"
+      id="cart_quantity">{{ cart|length }}</span>

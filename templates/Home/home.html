@@ -1,11 +1,671 @@
 {% extends 'common/base.html' %}
+{% load static %}
 {% block title %}
-	Barendo Systems | Energy matters
+    Barendo Systems | Energy matters
 {% endblock %}
 
 {% block content %}
-    
-<!--This is the navigation bar of the website-->
+
+    <!--This is the navigation bar of the website-->
     {% include 'common/navigation.html' %}
-	{{ user.username }}
+    <!--First section -->
+    <section>
+        <div class="position-relative  z-index: 1;">
+
+            <img src="{% static 'img/solar-panels-1615243 (1).jpg' %}" class="img-fluid" alt="Your Image">
+
+            <div class="text1_over_image">
+                <h5 class="text-white">Barendo Systems | Energy matters to us</h5>
+            </div>
+            <div class="text2_over_image">
+                <h3 class="text-white">Save up to Ksh. 10,000 / month <br> on electricity bills</h3>
+            </div>
+            <div class="d-flex">
+                <a href="#">
+                    <button class="curved-button2">Get a Quote</button>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Second Section-->
+    <section class="pg-2 pt-5 ps-2" style="background-color: #F6FFF8">
+        <h2 class="pg2_header_text text-center text-lg-start">The #1 home solar & battery <br class="d-none d-lg-block">
+            company in Kenya</h2>
+
+        <div class="row my-2" style="width: 100%;">
+            <!-- First Column -->
+            <div class="col-lg-3 col-md-6 col-sm-12 my-2 p-3 text-center column-border">
+                <div class="d-flex justify-content-center align-items-start">
+                    <img src="{% static 'svg/sun-svgrepo-com (1).svg' %}" alt="..." class="m-3"
+                         style="height: 43px; width: 47px;">
+                </div>
+                <div class="information-header">
+                    <p>Unparalleled home solar <br>and battery experience</p>
+                </div>
+                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque facilisis
+                    tristique
+                    turpis at pretium. Pellentesque vel risus felis. Maecenas efficitur arcu quis facilisis fermentum.
+                    Vestibulum
+                    aliquet, ante eget convallis vestibulum, orci magna feugiat dolor, at aliquet quam elit non nisi.
+                    Proin vel
+                    fringilla arcu, vel malesuada sapien.</p>
+            </div>
+
+            <!-- Second Column -->
+            <div class="col-lg-3 col-md-6 col-sm-12 my-2 p-3 text-center column-border2 overflow-auto">
+                <div class="d-flex justify-content-center align-items-start">
+                    <img src="{% static 'svg/lightning-svgrepo-com.svg' %}" alt="..." class="m-3"
+                         style="height: 43px; width: 47px;">
+                </div>
+                <div class="information-header">
+                    <p>Smart technology</p>
+                </div>
+                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec risus vitae
+                    justo
+                    efficitur interdum. Sed auctor, justo vel mollis interdum, odio lorem scelerisque sapien, ut
+                    interdum metus
+                    metus sed arcu. Vestibulum sit amet libero id lectus tincidunt fringilla. Integer ultricies, justo
+                    non venenatis
+                    pharetra, nunc justo aliquet urna, nec tincidunt felis mauris non nulla.</p>
+            </div>
+
+            <!-- Third Column -->
+            <div class="col-lg-3 col-md-6 col-sm-12 my-2 p-3 text-center column-border overflow-auto">
+                <div class="d-flex justify-content-center align-items-start">
+                    <img src="{% static 'svg/credit-card-svgrepo-com (3).svg' %}" alt="..." class="m-3"
+                         style="height: 43px; width: 47px;">
+                </div>
+                <div class="information-header">
+                    <p>Payment solutions for every <br> home</p>
+                </div>
+                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt
+                    consectetur
+                    ante, ac dictum quam dignissim eget. Nullam eget ligula vel orci vestibulum mollis. Duis tempor
+                    tincidunt risus,
+                    ut vulputate nunc. Vivamus varius nisi sit amet urna pulvinar bibendum. Proin sit amet malesuada
+                    orci, nec
+                    interdum orci.</p>
+            </div>
+
+            <!-- Fourth Column -->
+            <div class="col-lg-3 col-md-6 col-sm-12 my-2 p-3 text-center overflow-auto">
+                <div class="d-flex justify-content-center align-items-start">
+                    <img src="{% static 'svg/earphones-alt-svgrepo-com.svg' %}" alt="..." class="m-3"
+                         style="height: 43px; width: 47px;">
+                </div>
+                <div class="information-header">
+                    <p>The Barendo System's <br>guarantee</p>
+                </div>
+                <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac lorem at sapien
+                    tincidunt
+                    viverra non sit amet odio. Curabitur consequat, mi sit amet accumsan sagittis, libero elit
+                    scelerisque tortor,
+                    at pharetra velit arcu in nisi. Sed facilisis, mi eu ullamcorper consectetur, sapien purus elementum
+                    mi, a
+                    finibus elit libero id enim.</p>
+            </div>
+        </div>
+    </section>
+
+    <!--Third Section (Testimonials)-->
+    <section class="ps-4" style="width: 100%; background-color: #F6FFF8">
+        <div class="py-2 ps-1">
+            <div class="d-md-flex db-block justify-content-md-between bg-light align-items-center my-3">
+                <div>
+                    <h2 class="" style="font-family: 'Roboto Light', serif; font-size: 40px;">100 homes and
+                        counting</h2>
+                    <h5 class="small_text">Powering life's possibilities</h5>
+                </div>
+                <div class="align-items-center mt-4 mt-md-0">
+                    <a href="#">
+                        <button class="curved-button3">Explore customers stories</button>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!--The Carousel-->
+        <div id="carouselExampleIndicators" class="carousel slide mx-auto" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="testimonials mx-1 mx-md-5 my-2 p-4"
+                         style="border-radius: 30px; background-color: #E0FDE7;">
+                        <div class="text-center d-flex align-items-center justify-content-center">
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                        </div>
+                        <div class="text-center align-items-center justify-content-center">
+                            <h5 style=""> Euegene Amollo -
+                                Oyugis, Homa Bay</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-10 mx-auto">
+
+                                <h6 style="">
+
+                                    “The whole process was quick, easy and painless. We did
+
+                                    almost nothing. The next thing we knew, [the panels]
+
+                                    we on our roof and generating solar power!”
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="testimonials mx-1 mx-md-5 my-2 p-4"
+                         style="border-radius: 30px; background-color: #E0FDE7;">
+                        <div class="text-center d-flex align-items-center justify-content-center">
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                        </div>
+                        <div class="text-center align-items-center justify-content-center">
+                            <h5 style=""> Euegene Amollo -
+                                Oyugis, Homa Bay</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-10 mx-auto">
+
+                                <h6 style="">
+
+                                    “The whole process was quick, easy and painless. We did
+
+                                    almost nothing. The next thing we knew, [the panels]
+
+                                    we on our roof and generating solar power!”
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="testimonials mx-1 mx-md-5 my-2 p-4"
+                         style="border-radius: 30px; background-color: #E0FDE7;">
+                        <div class="text-center d-flex align-items-center justify-content-center">
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                            <i class="bi fs-3 bi-star-fill"></i>
+                        </div>
+                        <div class="text-center align-items-center justify-content-center">
+                            <h5 style=""> Euegene Amollo -
+                                Oyugis, Homa Bay</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-10 mx-auto">
+
+                                <h6 style="">
+
+                                    “The whole process was quick, easy and painless. We did
+
+                                    almost nothing. The next thing we knew, [the panels]
+
+                                    we on our roof and generating solar power!”
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+
+            </div>
+        </div>
+
+        <br><br>
+    </section>
+
+    <!-- Fourth Section-->
+
+    <section class="pg-3">
+        <div class="text-center">
+
+            <h1 class="pg-3-title" style="font-family: 'Roboto Light', serif;">Bringing you breakthrough <br>technology
+            </h1>
+        </div>
+
+        <div class="row p-md-5 p-2 pt-4">
+            <div class="col-md-6 ">
+                <img src="{% static 'img/Screenshot (62).png' %}" alt="..." class="pg-3_images img-fluid">
+            </div>
+            <div class="col-md-6 justify-content-left">
+                <h3 class="mt-md-0 mt-2" style="font-family: 'Roboto Light', serif; font-size: 35px">Innovative Energy
+                    Management
+                    <br>with Solar
+                    Inverters</h3>
+                <p style="font-size: 18px">A solar inverter converts energy from the sun into usable electricity for
+                    your home or
+                    business. It lets you power your appliances with clean, free energy while reducing your electricity
+                    bills and
+                    lowering your carbon footprint.</p>
+                <div class="container d-flex justify-content-center">
+                    <a href="#">
+                        <button class="curved-button3">Learn more</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row p-md-5 p-2">
+            <!-- Text Column -->
+            <div class="col-md-6 order-md-1 order-2 ms-0 justify-content-left">
+                <h3 style="font-family: 'Roboto Light', serif; font-size: 35px">Effective energy generation
+                    with solar panels</h3>
+                <p style="font-size: 18px">A solar inverter converts energy from the sun into usable electricity for
+                    your home or
+                    business. It lets you power your appliances with clean, free energy while reducing your electricity
+                    bills and
+                    lowering your carbon footprint.</p>
+                <div class="container d-flex justify-content-center">
+                    <a href="#">
+                        <button class="curved-button3">Learn more</button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Image Column -->
+            <div class="col-md-6 order-md-2 order-1 mb-md-0 mb-2">
+                <img src="{% static 'img/Screenshot (64).png' %}" alt="..." class="pg-3_images img-fluid">
+            </div>
+        </div>
+    </section>
+
+    <!-- Get quotation-->
+    <section class="pg-4"
+             style="background-image: url('{% static "img/andreas-schantl-rJs_JSRo21M-unsplash.jpg" %}'); width:100%; overflow: hidden;">
+        <div class="row">
+            <div class="col-md-6 pt-3 ps-5 d-flex align-items-center justify-content-start justify-content-md-center">
+                <h2 class="text-white pg-4-title" style="font-family: 'Segoe UI Emoji',serif;"> Take control of your
+                    <br>energy
+                    bills today</h2>
+            </div>
+
+            <div class="col-md-6 ps-5 my_form">
+                <div style="background-color: #303030; opacity: 0.4; border-radius: 40px;"
+                     class="w-md-60 w-auto me-5 pt-4 text-white">
+                    <div class="row col-11 mx-auto">
+                        <h4 style="font-family: Lancelot, serif;" class="text-white fs-2">
+                            Get a personalized free Quote
+                        </h4>
+                        <p style="font-size: 10px; font-family: Lancelot, serif;">All fields are required</p>
+                        <div class="row mb-md-3">
+                            <div class="col-6">
+                                <p style="font-size: 15px; font-family: Lancelot, serif;">First Name</p>
+                                <input type="text" class="p-3"
+                                       style="background-color: #ededed; border: 0; border-radius: 10px; height: 35px; width: 100%;">
+                            </div>
+                            <div class="col-6">
+                                <p style="font-size: 15px; font-family: Lancelot, serif;">Last Name</p>
+                                <input type="text"
+                                       style="background-color: #ededed; border: 0; border-radius: 10px; height: 35px; width: 100%;">
+                            </div>
+                        </div>
+                        <div class="mt-md-3 mt-1">
+                            <p style="font-size: 15px; font-family: Lancelot, serif;">Email</p>
+                            <input type="text" class="px-3"
+                                   style="background-color: #ededed; border: 0; border-radius: 10px; height: 35px; width: 100%;">
+                        </div>
+
+                        <div class="row mt-md-3 mt-1">
+                            <div class="col-6">
+                                <p style="font-size: 15px; font-family: Lancelot, serif;">Phone:</p>
+                                <input type="text"
+                                       style="background-color: #ededed; border: 0; border-radius: 10px; height: 35px; width: 100%;">
+                            </div>
+                            <div class="col-6">
+                                <p style="font-size: 15px; font-family: Lancelot, serif;">Town:</p>
+                                <input type="text"
+                                       style="background-color: #ededed; border: 0; border-radius: 10px; height: 35px; width: 100%;">
+                            </div>
+                        </div>
+                        <div class="my-3">
+                            <div class="row col-6 mx-auto mt-1">
+                                <button type="submit" class="curved-button4" style="width: 100%;">Get a Quote</button>
+                            </div>
+                        </div>
+                        <br>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-white experts_text pt-3">
+            Have Questions? <span style="text-decoration:underline;">Talk to our experts</span>
+
+        </div>
+    </section>
+
+
+    <section class="pg-5"
+             style="background-image: linear-gradient(to right, black 20%, transparent 80%),url('{% static "img/Screenshot (61).png" %}'); background-position: center; " >
+        <div class="pt-5 ps-4 ">
+            <!--style="padding-top: 130px"> -->
+            <div class="">
+                <h5 class="text-white" style="font-family: 'Segoe UI Emoji',serif;">WHY SOLAR?</h5>
+            </div>
+            <div class="pt-5"><!--style="padding-top: 130px"> -->
+                <h2 class="text-white pg-4-title" style="font-family: 'Segoe UI Emoji',serif;">Break the limits <br> of
+                    traditional energy</h2>
+            </div>
+            <div class="pt-5">
+                <h4 class="text-white fs-6 fs-md-3" style="font-family: 'Segoe UI Emoji',serif;">Replace costly,
+                    unreliable grid
+                    power <br>
+                    with solar energy and backup battery</h4>
+            </div>
+            <div class="d-flex pt-5">
+                <a href="#">
+                    <button class="curved-button5 btn-outline-light">Learn more</button>
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FAQs -->
+    <section class="" style="background-color:#242323; width:100%; overflow: hidden;">
+        <div class="text-white p-4">
+            <h3 style="font-family: 'Roboto Serif', serif; font-size: 40px;">FAQs</h3>
+        </div>
+        <div class="px-1 text-white row">
+            <div class="col-md-6 justify-content-center ps-md-2">
+                <hr style="border: 1px solid white;">
+                <h4 class="btn text-white" data-bs-toggle="collapse" data-bs-target="#answerOne" aria-expanded="false"
+                    aria-controls="collapseOne">
+                    <i class="bi bi-chevron-right my-caret" id="caret-icon1" data></i>
+
+                    How long do solar panels really last?
+                </h4>
+                <div id="answerOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                    <div class="ps-4">
+                        <p>
+                            Solar panels can last anywhere between 25 to 30 years, sometimes more. This doesn’t mean
+                            that the panels on
+                            your roof will stop producing electricity after a couple of decades. It just means their
+                            energy production
+                            will decrease by what solar panel manufacturers consider optimal to meet the average
+                            household's energy
+                            needs.
+                            With proper care and maintenance, you can expect to receive significant solar benefits for
+                            the next 20 to 30
+                            years.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 justify-content-center">
+                <hr style="border: 1px solid white;">
+                <h4 class="btn text-white" data-bs-toggle="collapse" data-bs-target="#answerTwo" aria-expanded="false"
+                    aria-controls="collapseOne">
+                    <i class="bi bi-chevron-right my-caret"></i>
+
+                    How much can I expect to save when I go solar?
+                </h4>
+                <div id="answerTwo" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                    <div class="ps-4">
+                        <p>
+                            When you sign up for a free quote, our in-house Solar Advisors will work with you to
+                            determine how much you
+                            can expect to save on your monthly energy bill. This relies on factors like your utility,
+                            how much
+                            electricity you use and how much sunlight your home gets. We’ll only recommend solar if it’s
+                            the right fit
+                            for your home energy needs and profile.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 justify-content-center">
+                <hr style="border: 1px solid white;">
+                <h4 class="btn text-white" data-bs-toggle="collapse" data-bs-target="#answerThree" aria-expanded="false"
+                    aria-controls="collapseOne">
+                    <i class="bi bi-chevron-right my-caret"></i>
+
+                    How many solar panels will my home need?
+                </h4>
+                <div id="answerThree" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                    <div class="ps-4">
+                        <p>
+                            Every household is different. When determining the number of solar panels your home needs,
+                            consider the
+                            following questions:
+
+                            How much power do I need? Check your electric bills to see how many kilowatt hours (kWhs)
+                            you use throughout
+                            the year. We’ll go over this with you in detail during your free solar consultation to
+                            figure out just how
+                            much power your panels will need to produce.
+
+                            What’s your climate like? The number of panels you need depends on how much sun reaches the
+                            ground where you
+                            are.
+
+                            How much direct sun hits your roof? Shading, which direction your roof faces, and any
+                            aesthetic preferences
+                            you have can impact how big your system needs to be.
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 justify-content-center">
+                <hr style="border: 1px solid white;">
+                <h4 class="btn text-white" data-bs-toggle="collapse" data-bs-target="#answerFour" aria-expanded="false"
+                    aria-controls="collapseOne">
+                    <i class="bi bi-chevron-right my-caret"></i>
+
+                    Is my home good for solar?
+                </h4>
+                <div id="answerFour" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
+                    <div class="ps-4">
+                        <p>
+                            A lot of things affect how well-suited your home is for solar, including where your home is,
+                            the angle of
+                            your roof, how much shade it gets throughout the day, and how old your home is.
+
+                            Our solar advisors can help you determine if your home is a good fit for solar at the
+                            moment. They’ll run a
+                            custom analysis of your home with our proprietary solar design technology, BrightPath,™ and
+                            they’ll get a
+                            sense for your energy needs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br><br>
+        <br><br>
+        <div class="row ">
+            <div class="text-center text-white col-8 mx-auto ">
+                <h5>Have a different question?
+                    <button class="m-2 m-md-1 curved-button6"> Browse all FAQs</button>
+                </h5>
+
+            </div>
+        </div>
+        <br><br>
+
+    </section>
+    <!-- Footer -->
+    <footer style="width:100%; overflow: hidden;"
+            class="text-center text-lg-start bg-body-tertiary text-muted text-white">
+        <!-- Section: Social media -->
+        <div class="text-white" style="background-color:#1b1b1b;">
+            <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+                <!-- Left -->
+                <div class="me-5 d-none d-lg-block">
+                    <span>Get connected with us on social networks:</span>
+                </div>
+                <!-- Left -->
+
+                <!-- Right -->
+                <div>
+                    <a href="" class="me-4 text-reset">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="" class="me-4 text-reset">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="" class="me-4 text-reset">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+
+                </div>
+                <!-- Right -->
+            </section>
+            <br>
+            <!-- Section: Social media -->
+            <section class="px-3">
+                <form action="">
+                    <!--Grid row-->
+                    <div class="row d-flex justify-content-center">
+                        <!--Grid column-->
+                        <div class="col-auto">
+                            <p class="pt-2">
+                                <strong>Sign up for our newsletter</strong>
+                            </p>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-5 col-8 mx-auto">
+                            <!-- Email input -->
+                            <div data-mdb-input-init class="form-outline mb-4 ">
+                                <input type="email" id="form5Example24" class="form-control"
+                                       placeholder="someone@gmail.com"/>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-auto mx-2">
+                            <!-- Submit button -->
+                            <button data-mdb-ripple-init type="submit" class="btn btn-outline-light mb-4 text-white">
+                                Subscribe
+                            </button>
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </form>
+            </section>
+            <!-- Section: Links  -->
+            <section class="">
+                <div class="container text-center text-md-start mt-5">
+                    <!-- Grid row -->
+                    <div class="row mt-2">
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                            <!-- Content -->
+                            <p class="text-uppercase fw-bold mb-4">
+                                <i class="fas fa-gem me-3"></i>Barendo Systems
+                            </p>
+                            <p>
+                                Barendo Systems | Energy matters to us
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <p class="text-uppercase fw-bold mb-4">
+                                Links
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Products</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Plans & Pricing</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Explore</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Learn</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                            <!-- Links -->
+                            <p class="text-uppercase fw-bold mb-4">
+                                Useful links
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Pricing</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Settings</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Orders</a>
+                            </p>
+                            <p>
+                                <a href="#!" class="text-reset">Help</a>
+                            </p>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                            <!-- Links -->
+                            <p class="text-uppercase fw-bold mb-4">Contact</p>
+                            <p><i class="bi bi-house-door-fill"></i>&nbsp;&nbsp;&nbsp;
+                                Kisumu City, Kisumu, 4023-23200</p>
+                            <p><i class="bi bi-envelope"></i>&nbsp;&nbsp;&nbsp;
+                                youremail@gmail.com</p>
+                            <p><i class="bi bi-telephone"></i>&nbsp;&nbsp;&nbsp;
+                                + 25471232434</p>
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <!-- Grid row -->
+                </div>
+            </section>
+            <!-- Section: Links  -->
+
+            <!-- Copyright -->
+            <div class="row" style="background-color: #1b1b1b; width:100%;">
+                <div class="text-center p-4 col-6 col-md-12 mx-auto">
+                    © 2024 Copyright:
+                    <h5 class="text-reset fw-bold">Barendo Systems</h5>
+                </div>
+            </div>
+            <!-- Copyright -->
+        </div>
+    </footer>
+    <!-- Footer -->
+
+
+
+
+
+
+
+    {{ user.username }}
 {% endblock %}c %}
