@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     # My apps
     'CAuthentication',
     'store',
-    'cart',
+    'cart.apps.CartConfig',
     # Authentication apps
     'django.contrib.sites',
     'allauth',

@@ -9,7 +9,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=200, blank=True)
     address = models.CharField(max_length=200, blank=True)
-    cart = models.CharField(max_length=5000, blank=True)
+    old_cart = models.TextField(max_length=5000, blank=True)
 
     def __str__(self):
         return "{}".format(self.user.username)
