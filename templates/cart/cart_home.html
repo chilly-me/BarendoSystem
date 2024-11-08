@@ -1,0 +1,262 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block title %}
+    Cart
+{% endblock %}
+{% block content %}
+    <style>
+        .icon-shape {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .icon-sm {
+            width: 2rem;
+            height: 2rem;
+
+        }
+    </style>
+
+    {% include 'common/navigation.html' %}
+
+    <div style="background-color: #f4f4f4">
+        {% if products %}
+            <br>
+            <div class="row mx-3 mx-sm-4 mx-md-5 pb-4">
+                <div class="container  col-md-8 col-12 order-md-first order-last mt-4 mt-md-0 shadowed-div"
+                     style="margin-inline-end: 1%; background-color: white; box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;">
+                    <div class="pt-3 ps-3">
+                        <h5 class="">Cart({{ cart|length }})</h5>
+                    </div>
+                    <hr style="margin: 10px 0 10px 0;">
+
+
+                    {% for product in products %}
+
+                        <a href="{% url 'store:products_page' product.id %}" class="text-decoration-none text-black">
+
+                            <div class="row px-2 align-items-center">
+                                <div class="col-sm-2 col-6 px-3">
+                                    <img style="height: 60px; width: auto" src="{{ product.primary_image.url }}" alt=""
+                                         class="img-fluid">
+                                </div>
+                                <div class="col-6 col-sm-5 d-flex flex-column justify-content-center">
+                                    <div>
+                                        {{ product.product_name }}
+                                    </div>
+                                    <div class="d-sm-none">
+                                        {% for key, value in cart_sum.items %}
+                                            {% if product.id|slugify == key %}
+                                                <strong>Ksh. {{ value.price|format_number }}</strong>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <!-- Centered on small screens, below product name -->
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-5 d-none d-sm-flex justify-content-center align-items-center">
+                                    {% for key, value in cart_sum.items %}
+                                        {% if product.id|slugify == key %}
+                                            <strong>Ksh. {{ value.price|format_number }}</strong>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <!-- Centered vertically on larger screens -->
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="w-100 mt-2 px-2 d-flex justify-content-between">
+                            <a href="" id="remove-item" data-value="{{ product.id }}"
+                               class="d-flex text-decoration-none">
+                                <i class="bi bi-trash fs-5" style="color:red;"></i> &nbsp;
+                                <p class="mt-1" style="color:red;">REMOVE</p>
+                            </a>
+                            <div class="input-group w-auto justify-content-end align-items-center">
+                                <input type="button" value="-"
+                                       class="button-minus border rounded-circle icon-shape icon-sm mx-1 decrement">
+                                {% for key, value in cart_sum.items %}
+                                    {% if product.id|slugify == key %}
+                                        <input type="number" step="1" max="10" value="{{ value.quantity }}"
+                                               name="quantity"
+                                               data-product_id="{{ product.id }}"
+                                               class="product-quantity quantity-field border-0 text-center w-25"
+                                               disabled>
+                                    {% endif %}
+                                {% endfor %}
+                                <input type="button" value="+"
+                                       class="button-plus border rounded-circle icon-shape icon-sm increment">
+                            </div>
+                        </div>
+
+                        <hr style="margin: 5px 0 5px 0;">
+                    {% endfor %}
+                    <br>
+
+
+                </div>
+                <div class="container p-2 col-md-3 col-12 order-md-last order-first"
+                     style="max-height: 160px; background-color: white; box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); border-radius: 5px;">
+                    <h5 class="lead fs-6">Cart Summary:</h5>
+                    <hr style="margin: 10px 0 10px 0 ;">
+                    <div class="d-flex justify-content-between pe-3">
+                        <h6 class="">Subtotal</h6>
+                        <h6><strong>Ksh. {{ cost|format_number }}</strong></h6>
+                    </div>
+                    <hr style="margin: 10px 0 10px 0 ;">
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-secondary text-center w-100">
+                            Checkout (Ksh. {{ cost|format_number }})
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        {% else %}
+            <br>
+            <div class="container my-5 pt-5" style="background-color: white">
+                <div class="row col-lg-10 col-md-8 d-block text-center mx-auto">
+                    <h4><strong>There's Nothing In Your Cart...</strong></h4>
+                    <br>
+                    <a href="{% url 'store:store' %}" class="btn btn-outline-success col-auto mx-auto">View our
+                        products</a>
+                    <br><br>
+                    <img src="{% static 'img/empty_cart.png' %}" alt="Empty Cart"
+                         class="col-lg-6 col-md-6 col-sm-6 img-fluid">
+                    <br><br>
+
+                </div>
+            </div>
+        {% endif %}
+        <section class="container bg-light mx-auto">
+            <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fw-bolder mb-4 text-start text-md-center"> Recently Viewed</h2>
+                <div class="row col-lg-4 col-12 col-sm-6 mb-4 mb-md-2  justify-content-center">
+                    <div class="col mb-5">
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Sale badge-->
+                                <!-- Product image-->
+                                <img class="card-img-top" src="{% static 'img/Products/lithium battery.png' %}"
+                                     alt="..."/>
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">Lithium Battery</h5>
+                                        <!-- Product reviews-->
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                        </div>
+                                        <!-- Product price-->
+                                        &nbsp;ksh. 5000
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent d-flex justify-content-between">
+                                    <div class="text-center"><a class="btn btn-outline-success mt-auto fs-6"
+                                                                href="">View
+                                        More</a>
+                                    </div>
+                                    <button class="btn btn-outline-dark">
+                                        <i class="bi-cart-fill me-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        function remove_item(e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'cart:remove_item' %}',
+                data: {
+                    product_id: $('#remove-item').data('value'),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+                success: function (json) {
+                    document.getElementById('cart_quantity').textContent = json.cart_quantity
+                    location.reload()
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX request failed:", status, error);
+                    console.error("Response:", xhr.responseText);
+                }
+            })
+        }
+
+        $(document).on('click', '.increment', function (e) {
+            e.preventDefault();
+            const tag = $(this).closest('.input-group').find('.product-quantity'); // Target the correct quantity input
+            let target = parseInt(tag.val(), 10); // Convert value to integer
+
+            if (target < 10) {
+                tag.val(target + 1); // Increment the value
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'cart:update_cart' %}',
+                data: {
+                    action: 'post',
+                    product_id: tag.data('product_id'),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    quantity: tag.val(),  // Send updated quantity
+                },
+                success: function (json) {
+                    location.reload(); // Reload the page after successful request
+                }
+            });
+        });
+
+        $(document).on('click', '.decrement', function (e) {
+            e.preventDefault();
+            const tag = $(this).closest('.input-group').find('.product-quantity'); // Target the correct quantity input
+            let target = parseInt(tag.val(), 10); // Convert value to integer
+
+            if (target > 0) {
+                tag.val(target - 1); // Decrement the value
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'cart:update_cart' %}',
+                data: {
+                    action: 'post',
+                    product_id: tag.data('product_id'),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    quantity: tag.val(),  // Send updated quantity
+                },
+                success: function (json) {
+                    location.reload(); // Reload the page after successful request
+                }
+            });
+        });
+
+
+        $(document).on('click', '#remove-item', function (e) {
+            remove_item(e)
+        })
+
+    </script>
+
+
+{% endblock %}

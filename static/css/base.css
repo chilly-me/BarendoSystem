@@ -475,6 +475,10 @@
   transform: rotate(90deg);
 }
 
+.shadowed-div{
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
 
 /* Puts the image behind other content */
 

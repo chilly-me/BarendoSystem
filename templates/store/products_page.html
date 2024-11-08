@@ -72,6 +72,7 @@
                             <li>ipsum neque officiis pariatur perspiciatis,</li>
                             <li>repellendus velit voluptate!</li>
                         </ul>
+                        <p class="cart_quantity">5</p>
                     </div>
                 </div>
             </div>
@@ -125,5 +126,30 @@
         </div>
     </section>
 
+    <script>
+        $(document).on('click', '#add-cart', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'cart:add_item' %}',
+                data: {
+                    product_id: $('#add-cart').val(),
+                    product_qty: $('#cart-qty option:selected').text(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+                success: function (json) {
+                    console.warn(json.cart_quantity)
+                    document.getElementById('cart_quantity').textContent = json.cart_quantity
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX request failed:", status, error);
+                    console.error("Response:", xhr.responseText);
+                }
+            })
+        })
+
+
+    </script>
 
 {% endblock %}
