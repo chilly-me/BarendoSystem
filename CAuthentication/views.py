@@ -10,6 +10,7 @@ from CAuthentication.forms import SignUpForm, UpdateUserForm, ChangePasswordForm
 # Create your views here.
 
 def home(request):
+    # return render(request, 'test.html')
     return render(request, 'home/home.html')
 
 

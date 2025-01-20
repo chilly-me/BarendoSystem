@@ -1,7 +1,7 @@
 {% load static %}
 
 <div class="align-content-center position-sticky top-0 overflow-hidden"
-     style="height: 80px; background-color: #ffffff; z-index: 1000; width: 100%;">
+     style="height: 80px; background-color: #ffffff; z-index: 1000; width: 100%; position: relative;">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container px-2 d-flex align-items-center">
 
@@ -22,13 +22,13 @@
                 <div class="container-fluid d-flex justify-content-center">
                     <!-- Center the links -->
                     <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
-                        <li class="nav-item me-md-4"><a class="nav-link active nav_item_text" aria-current="page"
-                                                        href="{% url 'store:store' %}">Products</a>
+                        <li class="nav-item me-md-4 product-link">
+                            <a class="nav-link active nav_item_text" aria-current="page"
+                               href="{% url 'store:store' %}">Products</a>
                         </li>
                         <li class="nav-item me-md-4"><a class="nav-link active nav_item_text" aria-current="page"
                                                         href="#">Plans
-                            &
-                            Pricing</a></li>
+                            & Pricing</a></li>
                         <li class="nav-item me-md-4"><a class="nav-link active nav_item_text" aria-current="page"
                                                         href="#">Explore</a>
                         </li>
@@ -50,3 +50,157 @@
         </div>
     </nav>
 </div>
+
+<!-- Overlay for the "Products" link -->
+<div class="row product-overlay">
+    <div class="col-12 col-md-9 mx-auto">
+        <div class="row d-block d-md-flex justify-content-between">
+            <!-- First Column: Explore Section -->
+            <div class="col-12 col-md-5 pt-4">
+                <p class="text-white mt-3 ps-3 text-uppercase"
+                   style="font-size: 12px; font-family: 'Roboto Light', serif">Explore</p>
+                <div class="text-white mt-5 my_links">
+                    <a href="" class="text-decoration-none hover-link">
+                        <div class="d-flex justify-content-between p-0 m-0">
+                            <h6 class="clickable pb-0">Batteries</h6>
+                            <i class="bi bi-arrow-right fs-5 icon-hover pb-0"></i>
+                        </div>
+                        <hr class="hover-line">
+                    </a>
+                    <h6>Inverters</h6>
+                    <hr>
+                    <h6>Solar Accessories</h6>
+                    <hr>
+                    <h6>Solar Flood light</h6>
+                    <hr>
+                    <h6>Solar Panels</h6>
+                    <hr>
+                </div>
+            </div>
+
+            <!-- Second Column: Featured Section -->
+            <div class="col-12 col-md-7 pt-4">
+                <p class="text-white mt-3 text-uppercase pb-0"
+                   style="font-size: 12px; font-family: 'Roboto Light', serif; ">Featured</p>
+                <div style="position:relative;">
+                    <img src="{% static 'img/Screenshot (62).png' %}" alt=""
+                         style="border-radius:20px; width: 100%; height: auto;">
+                    <div style="position:absolute; top:0; left:0; width: 100%; height: 100%;  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0) 60%);">
+                        <div class="p-4 d-flex flex-column justify-content-between"
+                             style="width: 100%; height: 100%; background-color: transparent">
+                            <h4 class="text-white">Power up your life with an <br>inverter—keep the lights on, <br>no
+                                matter what!</h4>
+                            <div>
+                                <button class="nav_button2">Learn more</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .my_links h6 {
+        color: #C3DBFF;
+        cursor: pointer;
+    }
+
+    .hover-link {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .icon-hover {
+        color: white; /* Default color */
+        opacity: 0; /* Icon hidden by default */
+        transition: opacity 0.3s ease, color 0.3s ease;
+    }
+
+    .hover-line {
+        color: white; /* Default color */
+        height: 1px; /* Default thickness */
+        transition: color 0.3s ease, height 0.3s ease;
+    }
+
+    .hover-link:hover .icon-hover {
+        opacity: 1; /* Make the icon visible */
+        color: #ffffff; /* Icon color on hover */
+    }
+
+    .hover-link:hover .hover-line {
+        color: #ffffff; /* Brighter underline color */
+        height: 5px; /* Increase underline thickness */
+    }
+
+    .nav_button2 {
+        height: 30px;
+        width: 180px;
+        background-color: transparent;
+        color: #ffffff; /* White text color */
+        font-weight: bold;
+        padding: 0; /* Padding for the button */
+        border: 1px solid #ffffff;
+        border-radius: 30px; /* Curved edges (higher value for more curve) */
+        font-size: 16px; /* Font size */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    }
+
+    /* Add style for the product overlay */
+    .product-overlay {
+        position: absolute;
+        background-color: rgb(0, 1, 0, 0.7);
+        top: 125px; /* Adjust the top value to set the overlay position relative to the nav bar */
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        min-height: 100vh; /* Minimum height to ensure the row is at least as tall as the viewport */
+        z-index: 1050; /* Higher than the nav bar z-index */
+        display: none; /* Initially hidden */
+        flex-direction: column; /* Allow content to stack and grow if needed */
+        justify-content: space-between;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out; /* Smooth ease-in transition */
+    }
+
+    /* Show the overlay when hovering on Products link or the overlay itself */
+    .product-link:hover + .product-overlay,
+    .product-overlay:hover {
+        display: flex;
+        opacity: 1;
+    }
+</style>
+
+<script>
+    // Optional: You can also use JavaScript for more complex interactions
+    document.querySelector('.product-link').addEventListener('mouseenter', function () {
+        document.querySelector('.product-overlay').style.opacity = '1';
+        setTimeout(() => {
+            document.querySelector('.product-overlay').style.display = 'flex';
+        }, 400);
+    });
+
+    document.querySelector('.product-link').addEventListener('mouseleave', function () {
+        document.querySelector('.product-overlay').style.opacity = '0';
+        setTimeout(() => {
+            document.querySelector('.product-overlay').style.display = 'none';
+        }, 400); // Wait for the fade-out transition to complete
+    });
+
+    document.querySelector('.product-overlay').addEventListener('mouseenter', function () {
+        this.style.display = 'flex';
+        this.style.opacity = '1';
+        console.log("In the overlay");
+    });
+
+    document.querySelector('.product-overlay').addEventListener('mouseleave', function () {
+        this.style.opacity = '0';
+        setTimeout(() => {
+            this.style.display = 'none';
+        }, 400); // Wait for the fade-out transition to complete
+        console.log("left the overlay");
+        
+    });
+</script>

@@ -1,0 +1,177 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block title %}
+    Checkout Summary | Barendo Systems
+{% endblock %}
+{% block content %}
+
+
+    <div style="background-color: #f4f4f4">
+        <br>
+        <div class="row mx-3 mx-sm-4 mx-md-5 pb-4">
+            <div class="container col-md-8 col-12 order-md-1 order-2 mt-4 mt-md-0">
+                <div class="container w-100 shadowed-div"
+                     style="margin-inline-end: 1%; background-color: white; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); border-radius: 5px;">
+                    <div class="pt-3 ps-3 d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            {% if profile_complete %}
+                                <i class="bi bi-check-circle-fill" style="color: green; margin-right: 8px;"></i>
+                            {% else %}
+                                <i class="bi bi-x-circle-fill"></i>
+                            {% endif %}
+                            <h6 class="mb-0">1. Customer Address</h6>
+                        </div>
+                        <a href="{% url 'order:update_address' %}" class="text-decoration-none" style="color: #3bc9fd">Change
+                            ></a>
+                    </div>
+                    <hr style="margin: 2px 0 5px 0;">
+                    <div class="row px-2 align-items-center">
+                        <div class="p-2 ps-3">
+                            <p>{{ user.first_name }} {{ user.first_name }} ({{ user.username }})</p>
+                            {% if profile_complete %}
+                                <p class="mt-1">{{ profile.phone }} | {{ user.email }}
+                                    | {{ profile.address }}-{{ profile.zipcode }} - {{ profile.town }}</p>
+                            {% else %}
+                                <p class="mt-1">Complete your Profile</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr style="margin: 5px 0 15px 0;">
+                </div>
+
+                <!-- Customer Address Block 2 -->
+                <div class="container w-100 shadowed-div"
+                     style="margin-inline-end: 1%; background-color: white; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); border-radius: 5px;">
+                    <div class="pt-3 ps-3 d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-check-circle-fill" style="color: green; margin-right: 8px;"></i>
+                            <h6 class="mb-0">2. Delivery Details</h6>
+                        </div>
+                    </div>
+                    <hr style="margin: 2px 0 5px 0;">
+                    <div class="row px-2 align-items-center">
+                        <div class="p-2 d-flex align-items-center">
+                            <h6 class="mb-0">Delivered to {{ profile.town }} </h6> &nbsp;&nbsp;
+                            <p class="mb-0">from(Ksh. 600)</p>
+                        </div>
+                        <div class="">
+                            <p style="font-weight: 300">Delivery between <strong>13 November</strong> and <strong>18
+                                November</strong></p>
+                        </div>
+                        <div class="row">
+                            {% for product in products %}
+                                <div class="col-12 col-md-6">
+                                    <div class="d-flex justify-content-start">
+                                        <p class="mb-0" style="font-weight: 200; font-size: 10px;">
+                                            Shipment {{ forloop.counter }}/{{ cart|length }}</p>
+                                    </div>
+                                    <div style="border: 0.5px, solid, #b6b6b6; border-radius: 5px" class="p-2 mb-2 ">
+                                        <p class="mb-0" style="font-weight: 300; font-size: 11px;">Delivery between
+                                            <strong>13 November</strong> and
+                                            <strong>18 November</strong></p>
+                                        <hr style="margin: 1px;">
+                                        <div class="d-flex mt-2 align-items-center">
+                                            <img style="height: 50px; width:auto;"
+                                                 src="{{ product.primary_image.url }}" alt="">
+                                            <div class="d-block ms-4">
+                                                <p class="mb-0" style="font-weight: 200">{{ product.product_name }}</p>
+
+                                                {% for key, value in cart.items %}
+                                                    {% if key == product.id|slugify %}
+                                                        <p style="font-weight: 200">QTY: {{ value.quantity }}</p>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                        <div class="d-flex justify-content-center my-3">
+                            <a href="{% url 'cart:cart_home' %}" class="text-decoration-none text-success">MODIFY
+                                CART</a>
+                        </div>
+                    </div>
+                    <hr style="margin: 5px 0 15px 0;">
+                </div>
+
+                <!-- Customer Address Block 3 -->
+                <div class="container w-100 shadowed-div"
+                     style="margin-inline-end: 1%; background-color: white; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); border-radius: 5px;">
+                    <div class="pt-3 ps-3 d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-check-circle-fill" style="color: green; margin-right: 8px;"></i>
+                            <h6 class="mb-0">3. Payment Details</h6>
+                        </div>
+                        <a href="{% url 'order:update_payment_details' %}" class="text-decoration-none"
+                           style="color: #3bc9fd">Change ></a>
+                    </div>
+                    <hr style="margin: 2px 0 5px 0;">
+                    <div class="row px-2 align-items-center">
+                        <div class="payment-options p-3 rounded" style="">
+                            {% if payment_complete %}
+                                <h6>{{ paymentDate }} | {{ paymentMethod }}</h6>
+                            {% else %}
+                                <h6>Add your payment details</h6>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr style="margin: 5px 0 15px 0;">
+                </div>
+            </div>
+
+            <!-- Right Section: Order Summary -->
+            <div class="container p-2 col-md-3 col-11 order-md-2 order-1 h-50"
+                 style="background-color: white; box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); border-radius: 5px;">
+                <h5 class="lead fs-6">Order Summary:</h5>
+                <hr style="margin: 10px 0 10px 0;">
+                <div class="d-flex justify-content-between pe-3">
+                    <h6>Item's total</h6>
+                    <h6 id="products_cost"><strong>Ksh. {{ products_cost|format_number }}</strong></h6>
+                </div>
+                <div class="d-flex justify-content-between pe-3">
+                    <h6>Delivery Fees</h6>
+                    <h6 id="delivery_cost"><strong>Ksh. 600</strong></h6>
+                </div>
+                <hr style="margin: 10px 0 10px 0;">
+                <div class="d-flex justify-content-between pe-3">
+                    <h6>Total:</h6>
+                    <h6 id="total_cost"><strong>Ksh. 0</strong></h6> <!-- Initial value set to 0 -->
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <a href="{% url 'order:payment_processing' %}" class="btn btn-secondary text-center w-100">
+                        Confirm Order
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Select elements
+            const productsCostElement = document.getElementById("products_cost");
+            const deliveryCostElement = document.getElementById("delivery_cost");
+            const totalCostElement = document.getElementById("total_cost");
+
+            // Extract the numbers, assuming the format "Ksh. 12345"
+            const productsCost = parseFloat(productsCostElement.innerText.replace("Ksh. ", "").replace(",", ""));
+            const deliveryCost = parseFloat(deliveryCostElement.innerText.replace("Ksh. ", "").replace(",", ""));
+
+            // Calculate the total cost
+            const totalCost = productsCost + deliveryCost;
+
+            // Display the total cost in the "Total" section
+            totalCostElement.innerHTML = `<strong>Ksh. ${totalCost.toLocaleString()}</strong>`;
+        });
+    </script>
+
+
+{% endblock %}

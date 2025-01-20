@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'CAuthentication',
     'store',
     'cart.apps.CartConfig',
+    'order',
     # Authentication apps
     'django.contrib.sites',
     'allauth',
@@ -59,7 +60,8 @@ SOCIALACCOUNT_PROVIDERS = {
         },
         "AUTH_PARAMS": {
             "access_type": "online",
-            'prompt': 'select_account',
+            'prompt': 'select_account', # This parameter is important so that the user
+                                        # can select which google account they are to use
         }
 
     },

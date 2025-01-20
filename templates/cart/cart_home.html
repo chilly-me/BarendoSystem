@@ -2,7 +2,7 @@
 {% load static %}
 {% load custom_filters %}
 {% block title %}
-    Cart
+    Cart | Barendo Systems
 {% endblock %}
 {% block content %}
     <style>
@@ -109,9 +109,9 @@
                     </div>
                     <hr style="margin: 10px 0 10px 0 ;">
                     <div class="d-flex justify-content-center">
-                        <button class="btn btn-secondary text-center w-100">
+                        <a href="{% url 'order:order_page' %}" class="btn btn-secondary text-center w-100">
                             Checkout (Ksh. {{ cost|format_number }})
-                        </button>
+                        </a>
                     </div>
 
                 </div>

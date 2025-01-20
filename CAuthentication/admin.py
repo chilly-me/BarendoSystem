@@ -4,8 +4,11 @@ from django.contrib.auth.models import User
 from CAuthentication.models import Profile
 
 # Register your models here.
+class ProfileAdmin(admin.ModelAdmin):
+    readonly_fields = ('old_cart',)
 
-admin.site.register(Profile)
+
+admin.site.register(Profile, ProfileAdmin)
 
 
 class ProfileInline(admin.StackedInline):
