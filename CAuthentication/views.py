@@ -11,7 +11,7 @@ from CAuthentication.forms import SignUpForm, UpdateUserForm, ChangePasswordForm
 
 def home(request):
     # return render(request, 'test.html')
-    return render(request, 'home/home.html')
+    return render(request, 'Home/home.html')
 
 
 def login_page(request):
