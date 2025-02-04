@@ -24,7 +24,6 @@ SECRET_KEY = 'django-insecure-0zlj9mwze3ylha6z3^*w7nd_9w@q@xv5pm4&j)vr&k5rcczn(#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
 ALLOWED_HOSTS = []
 
 SITE_ID = 1
@@ -60,8 +59,8 @@ SOCIALACCOUNT_PROVIDERS = {
         },
         "AUTH_PARAMS": {
             "access_type": "online",
-            'prompt': 'select_account', # This parameter is important so that the user
-                                        # can select which google account they are to use
+            'prompt': 'select_account',  # This parameter is important so that the user
+            # can select which google account they are to use
         }
 
     },
@@ -167,9 +166,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = ['static/']
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATIC_ROOT = "/vol/web/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -184,5 +183,5 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/vol/web/media/'
