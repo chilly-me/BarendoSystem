@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    /* Styling for the top-div that will appear only on hover */
+    #hover-top-div {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f5f6fa; /* Light background */
+        color: #2c3e50; /* Dark text color */
+        padding: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        display: none; /* Hidden by default */
+        z-index: 9999;
+    }
+
+    /* Example styling for the navigation bar and icons */
+    #nav-bar {
+        position: fixed;
+        width: 80px;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #18283b;
+        color: #f5f6fa;
+        padding: 10px;
+    }
+
+    .nav-button {
+        margin: 20px 0;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .nav-button i {
+        font-size: 24px;
+    }
+
+</style>
+<!-- Navigation Bar -->
+<div id="nav-bar">
+    <div class="nav-button" id="icon-work" data-hover-text="Work content on top!">
+        <i class="fas fa-palette"></i><span>Your Work</span>
+    </div>
+    <div class="nav-button" id="icon-assets" data-hover-text="Assets content on top!">
+        <i class="fas fa-images"></i><span>Assets</span>
+    </div>
+</div>
+
+<!-- Div that appears on top (initially hidden) -->
+<div id="hover-top-div">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consequatur, doloremque dolorum eum eveniet id,
+    ipsam laborum nostrum officia possimus, qui quia quibusdam ratione rem sit ut vel voluptatem. Suscipit.
+</div>
+
+<script>
+    // JavaScript to show hover-top-div with dynamic content
+    const navButtons = document.querySelectorAll('.nav-button');
+    const hoverTopDiv = document.getElementById('hover-top-div');
+
+    // Function to show the div with dynamic content
+    function showHoverContent(event) {
+        const hoverText = event.currentTarget.getAttribute('data-hover-text');
+        {#hoverTopDiv.textContent = hoverText; // Set the text content based on the hovered icon#}
+        hoverTopDiv.style.display = 'block';
+    }
+
+    // Function to hide the div when the mouse leaves the icon
+    function hideHoverContent() {
+        hoverTopDiv.style.display = 'none';
+    }
+
+    // Attach hover listeners to each nav button
+    navButtons.forEach(button => {
+        button.addEventListener('mouseenter', showHoverContent);
+        button.addEventListener('mouseleave', hideHoverContent);
+    });
+
+</script>
+
+</body>
+</html>
