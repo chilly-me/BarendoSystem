@@ -18,6 +18,7 @@ class Product(models.Model):
     price = models.DecimalField(default=0, decimal_places=2, max_digits=15)
     description = models.CharField(max_length=200, default='', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    specifications = models.JSONField(blank=True, default=list)
     primary_image = models.ImageField(upload_to='uploads/product/')
     image2 = models.ImageField(upload_to='uploads/product/')
     image3 = models.ImageField(upload_to='uploads/product/')

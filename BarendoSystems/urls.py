@@ -27,3 +27,7 @@ urlpatterns = [
     path('order/', include('order.urls')),
     path('accounts/', include("allauth.urls"))
 ]
+
+# serving static files in development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

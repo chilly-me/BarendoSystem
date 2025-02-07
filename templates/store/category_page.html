@@ -1,7 +1,7 @@
 {% extends 'common/base.html' %}
 {% load static %}
 {% block title %}
-    Products
+    {{ category.name }} - Products
 {% endblock %}
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'css/store.css' %}">
@@ -15,38 +15,16 @@
         <!-- Centered text -->
         <div class="h-100 d-flex justify-content-center align-items-center text-white"
              style="position: relative; z-index: 2;">
-            <h1 style="font-family: Lekton, monospace;" class="fw-bolder">Our Products</h1>
+            <h1 style="font-family: Lekton, monospace;" class="fw-bolder">{{ category.name }}</h1>
         </div>
     </header>
 
     <div style="background-color: #f4f4f4">
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="col-md-6">
-                <div class="input-group mt-4">
-            <span class="input-group-text">
-                <i class="bi bi-search"></i>
-            </span>
-                    <input type="text" class="form-control" placeholder="Search anything...">
-                    <button class="btn btn-outline-success" type="button">Search</button>
-
-                </div>
-            </div>
-        </div>
-
-
+        
         <div class="row p-3 p-md-5">
             <section class="col-12 col-md-3 "
                      style="margin-inline-end: 2%; margin-block-end: 8%; background-color: white" ;>
-                <div class="">
-                    <h5 class="p-3">CATEGORY</h5>
-                    {% for category in categories %}
-                        <a href="{% url 'store:category_page' category.id %}" class="link-div w-100">
-                            <div>
-                                <p>{{ category.name }}</p>
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>
+                
                 <div>
                     <label for="customRange1" class="form-label">Example range</label>
                     <input type="range" class="form-range" id="customRange1">
@@ -114,8 +92,3 @@
     </div>
 
 {% endblock %}
-
-<i class="bi-cart-fill me-1"></i>
-Cart
-<span class="badge bg-dark text-white ms-1 rounded-pill"
-      id="cart_quantity">{{ cart|length }}</span>

@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-0zlj9mwze3ylha6z3^*w7nd_9w@q@xv5pm4&j)vr&k5rcczn(#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["13.247.117.43", "localhost", "127.0.0.1:8000", "chillyme.shop", "www.chillyme.shop"]
+ALLOWED_HOSTS = ["13.247.117.43", "localhost", "127.0.0.1", "chillyme.shop", "www.chillyme.shop"]
 
 SITE_ID = 2
 
@@ -126,10 +126,10 @@ WSGI_APPLICATION = 'BarendoSystems.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'barendo-systems-local',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
+        'PASSWORD': 'ABC/abc/123',
+        'HOST': 'localhost',
         'PORT': 5432
     }
 }
@@ -183,5 +183,11 @@ AUTHENTICATION_BACKENDS = (
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+# Remember to change back the media_root
+# MEDIA_ROOT = '/vol/web/media/'
+# Development Settings
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/vol/web/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+

@@ -68,10 +68,6 @@
 
 
 .text1_over_image {
-  position: absolute;
-  /*margin-top: 30%;*/
-  top: 20%;
-  left: 10%;
   color: white;
   font-family: SimSun, monospace;
 }
@@ -85,6 +81,9 @@
   .text1_over_image h5 {
     font-size: 17px;
   }
+  .text1_over_image {
+    margin-top: 300%;
+  }
 }
 
 /* For screens wider than 768px (e.g., medium devices like laptops) */
@@ -92,13 +91,12 @@
   .text1_over_image {
     font-size: 25px;
   }
+  .text1_over_image {
+    margin-top: 300%;
+  }
 }
 
 .text2_over_image {
-  position: absolute;
-  /*margin-top: 30%;*/
-  top: 35%;
-  left: 7%;
   color: white;
   font-size: 35px;
   font-family: "Segoe UI Emoji", monospace;
@@ -124,10 +122,6 @@
 .curved-button2 {
   height: 30px;
   width: 100px;
-  position: absolute;
-  /*margin-top: 30%;*/
-  top: 65%;
-  left: 15%;
   background-color: transparent;
   color: white; /* White text color */
   padding: 0; /* Padding for the button */
@@ -197,6 +191,10 @@
 .text-justify {
   text-align: justify;
 }
+
+.pg2_header_text {
+    font-size: 2rem;
+  }
 
 @media (max-width: 576px) {
   .pg2_header_text {
