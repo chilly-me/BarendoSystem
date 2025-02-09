@@ -1,13 +1,47 @@
+from order.models import Order
+from . import MpesaAuthorization
+from django.conf import settings
+
 from django.shortcuts import render
 from paypal.standard.forms import PayPalPaymentsForm
-from django.conf import settings
 from django.urls import reverse
-from order.models import Order
-import uuid
+import uuid, datetime, base64
 from django.http import HttpResponse
+import requests
 
 # Create your views here.
 def mpesaPayment(request):
+    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
+    shortCode = "174379"
+    stk_password = base64.b64encode(f"{shortCode}{passkey}{timestamp}".encode()).decode()
+
+
+      
+    body =  {
+                "BusinessShortCode": 174379,
+                "Password": stk_password,
+                "Timestamp": timestamp,
+                "TransactionType": "CustomerPayBillOnline",
+                "Amount": 1,
+                "PartyA": 254799359792,
+                "PartyB": 174379,
+                "PhoneNumber": 254799359792,
+                "CallBackURL": "https://mydomain.com/path",
+                "AccountReference": "BarendoSystems",
+                "TransactionDesc": "test" 
+            }
+    token = MpesaAuthorization.generate_access_token()
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    }
+
+    url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
+
+    response = requests.post(url, json=body, headers=headers)
+    print(response.json())
+
     return render(request, 'payment/MpesaPayment.html', {})
 
 def paypalPayment(request, order_id):
