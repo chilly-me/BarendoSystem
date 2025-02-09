@@ -1,12 +1,13 @@
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
+from django.urls import reverse
 from CAuthentication.forms import UpdateProfile
 from CAuthentication.models import Profile
 from cart.cart import Cart
 from order.models import Order, OrderItem
 from store.models import Product
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -63,22 +64,11 @@ def update_payment_details(request):
             "on_delivery": 'Pay upon delivery'
         }
 
-        PAYMENT_METHOD_CHOICES = {
-            "mpesa": 'Mpesa',
-            "paypal": 'Paypal',
-            "credit/debit": 'Credit/debit card'
-        }
 
         # Get selected values from the POST data
-        selected_payment_date = request.POST.get('paymentDate')
-        selected_payment_method = request.POST.get('paymentMethod')
+        request.session['paymentDate'] = request.POST.get('paymentDate')
+        request.session['paymentMethod'] = request.POST.get('paymentMethod')
 
-        # Store human-readable values in the session if they exist
-        if selected_payment_date in PAYMENT_DATE_CHOICES:
-            request.session['paymentDate'] = PAYMENT_DATE_CHOICES[selected_payment_date]
-
-        if selected_payment_method in PAYMENT_METHOD_CHOICES:
-            request.session['paymentMethod'] = PAYMENT_METHOD_CHOICES[selected_payment_method]
 
         # Mark the session as modified to save changes
         request.session.modified = True
@@ -90,8 +80,6 @@ def update_payment_details(request):
     return render(request, 'order/Payment Details.html', {})
 
 
-from django.http import HttpResponse
-
 
 def payment_processing(request):
     # Access the cart and create a new order
@@ -102,6 +90,9 @@ def payment_processing(request):
         payment_date=request.session.get('paymentDate'),
         payment_method=request.session.get('paymentMethod')
     )
+    print(f"{new_order.total_price}")
+    
+
     new_order.save()
 
     # Get cart summary and products in one query
@@ -124,5 +115,6 @@ def payment_processing(request):
 
     # Save all OrderItems at once
     OrderItem.objects.bulk_create(order_items)
+    cart.empty_cart()
+    return redirect(reverse('payment:paypal', kwargs={'order_id': new_order.id}))
 
-    return HttpResponse("Finished")

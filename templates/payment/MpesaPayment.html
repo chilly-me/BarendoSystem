@@ -1,0 +1,21 @@
+{% extends 'common/base.html' %}
+
+{% load static %}
+{% block title %}
+    Complete your payment - MPESA
+{% endblock %}
+
+{% block content %}
+
+{% include 'common/navigation.html' %}
+
+<section style="height: 90vh; background-color: #F6FFF8;">
+    <div class="col-12 col-md-8 col-lg-6 mx-auto p-4 text-center">
+        <img src="{% static 'svg/M-PESA.png' %}" alt="" style="width: 125px; height: auto;" class="py-3">
+        <h4>Complete Payment Using MPESA</h4>
+        <hr>
+    </div>    
+</section>
+
+
+{% endblock %}

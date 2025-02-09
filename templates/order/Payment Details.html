@@ -50,11 +50,11 @@
 
                                         <h5>Select Payment Date</h5>
                                         <div class="form-check mt-2">
-                                            <input type="radio" class="form-check-input" name="paymentDate" value="now">
+                                            <input type="radio" class="form-check-input" name="paymentDate" value="Pay now">
                                             <label class="form-check-label" for="payNowRadio" >Pay Now</label>
                                         </div>
                                         <div class="form-check mt-2">
-                                            <input type="radio" class="form-check-input" name="paymentDate" value="on_delivery">
+                                            <input type="radio" class="form-check-input" name="paymentDate" value="Pay upon delivery">
                                             <label class="form-check-label" for="payOnDeliveryRadio">Pay on
                                                 Delivery</label>
                                         </div>
@@ -64,21 +64,21 @@
                                             <h5>Choose Payment Method</h5>
                                             <div class="form-check mt-2 d-flex align-items-center">
                                                 <input type="radio" class="form-check-input" name="paymentMethod"
-                                                       id="paypalRadio" value="paypal">&nbsp;&nbsp;
+                                                       id="paypalRadio" value="Paypal">&nbsp;&nbsp;
                                                 <label class="form-check-label" for="paypalRadio">PayPal</label> &nbsp;&nbsp;&nbsp;
                                                 <img src="{% static 'svg/paypal-svgrepo-com.svg' %}" alt=""
                                                      style="height: 40px ;">
                                             </div>
                                             <div class="form-check mt-2 d-flex align-items-center">
                                                 <input type="radio" class="form-check-input" name="paymentMethod"
-                                                       id="mpesaRadio" value="mpesa">&nbsp;&nbsp;
+                                                       id="mpesaRadio" value="Mpesa">&nbsp;&nbsp;
                                                 <label class="form-check-label" for="mpesaRadio">M-Pesa</label> &nbsp;&nbsp;&nbsp;
                                                 <img src="{% static 'svg/M-PESA.png' %}" alt="m-pesa"
                                                      style="height: 20px;">
                                             </div>
                                             <div class="form-check mt-2 d-flex align-items-center">
                                                 <input type="radio" class="form-check-input" name="paymentMethod"
-                                                       id="creditCardRadio" value="credit/debit">&nbsp;&nbsp;
+                                                       id="creditCardRadio" value="Credit/debit card">&nbsp;&nbsp;
                                                 <label class="form-check-label" for="creditCardRadio">Credit/Debit
                                                     Card</label> &nbsp;
                                                 <img src="{% static 'svg/visa-svgrepo-com.svg' %}" alt=""
