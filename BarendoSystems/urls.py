@@ -25,7 +25,9 @@ urlpatterns = [
     path('store/', include('store.urls')),
     path('cart/', include('cart.urls')),
     path('order/', include('order.urls')),
-    path('accounts/', include("allauth.urls"))
+    path('accounts/', include("allauth.urls")),
+    path('payment/', include('payment.urls')),
+    path('paypal/', include('paypal.standard.ipn.urls'))
 ]
 
 # serving static files in development

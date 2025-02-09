@@ -43,8 +43,8 @@ class Order(models.Model):
     receipt_number = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
 
     # New fields for payment
-    payment_date = models.CharField(max_length=20, choices=PAYMENT_DATE_CHOICES, default='Pay now')
-    payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD_CHOICES, default='Mpesa')
+    payment_date = models.CharField(max_length=20)
+    payment_method = models.CharField(max_length=20)
 
     def update_status(self, new_status):
         if new_status in dict(self.STATUS_CHOICES):

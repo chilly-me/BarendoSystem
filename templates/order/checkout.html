@@ -144,9 +144,16 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <a href="{% url 'order:payment_processing' %}" class="btn btn-secondary text-center w-100">
-                        Confirm Order
-                    </a>
+                    {% if profile_complete and payment_complete %}
+                        <a href="{% url 'order:payment_processing' %}" class="btn btn-secondary text-center w-100">
+                            Confirm Order
+                        </a>
+                    {% else %}
+                        <a href="" class="disabled btn btn-secondary text-center w-100">
+                            Confirm Order
+                        </a>
+                    {% endif %}
+                    
                 </div>
             </div>
         </div>

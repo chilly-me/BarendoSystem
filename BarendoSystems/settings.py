@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'store',
     'cart.apps.CartConfig',
     'order',
+    'payment',
+    # Paypal Application
+    'paypal.standard.ipn',
     # Authentication apps
     'django.contrib.sites',
     'allauth',
@@ -126,7 +129,7 @@ WSGI_APPLICATION = 'BarendoSystems.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'barendo-systems-local',
+        'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'ABC/abc/123',
         'HOST': 'localhost',
@@ -189,5 +192,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+PAYPAL_RECEIVER_EMAIL = "sb-jmgdq37560005@business.example.com"
+PAYPAL_TEST = True # in development
 
 
