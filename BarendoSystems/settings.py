@@ -187,11 +187,11 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Remember to change back the media_root
-# MEDIA_ROOT = '/vol/web/media/' 
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Development Settings
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/vol/web/media/' 
 
 PAYPAL_RECEIVER_EMAIL = "sb-jmgdq37560005@business.example.com"
 PAYPAL_TEST = True # in development
