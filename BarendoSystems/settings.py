@@ -26,7 +26,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["13.247.117.43", "localhost", "127.0.0.1", "chillyme.shop", "www.chillyme.shop"]
 
-SITE_ID = 3
+SITE_ID = 2
 
 # Application definition
 
@@ -131,7 +131,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'ABC/abc/123',
+        'PASSWORD': 'postgres',
         'HOST': 'db',
         'PORT': 5432
     }
