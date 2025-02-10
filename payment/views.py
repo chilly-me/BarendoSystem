@@ -70,3 +70,5 @@ def paymentPaymentFailure(request, order_id):
 
 def paymentSuccess(request, order_id):
     return HttpResponse(f"Success {order_id}")
+
+

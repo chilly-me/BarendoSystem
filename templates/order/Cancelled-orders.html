@@ -1,0 +1,49 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}
+    Orders | Cancelled Orders
+{% endblock %}
+
+{% block content %}
+{% include 'common/navigation.html' %}
+    <div class="col-12 mx-auto text-center my-1">
+        <h2><u>Cancelled Orders</u></h5>
+    </div>
+    <section style="background-color: #F6FFF8;" class="d-block d-md-flex p-3 justify-content-center" >
+        
+        <div style="background-color: #e8f7ec;" class="col-11 col-md-8 m-2 mx-auto my-4 p-3 table-responsive">
+            <table class="table table-striped">
+                <thead style="background-color: #d7ffdf;">
+                  <tr>
+                    <th scope="col" style="background-color: #9fe9ae;" class="custom-table-head">id</th>
+                    <th scope="col" style="background-color: #9fe9ae;">Username</th>
+                    <th scope="col" style="background-color: #9fe9ae;">Email</th>
+                    <th scope="col" style="background-color: #9fe9ae;">Phone</th>
+                    <th scope="col" style="background-color: #9fe9ae;">Created Date</th>
+                    <th scope="col" style="background-color: #9fe9ae;">Total Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr style="" onclick="window.location.href='';">
+                            <th scope="row" style="background-color: #e1ffe7;">{{order.id}}</th>
+                            <td  style="background-color: #e1ffe7;">{{order.user.username}} </td>
+                            <td  style="background-color: #e1ffe7;">{{order.user.email}}</td>
+                            <td  style="background-color: #e1ffe7;">{{order.phone}}</td>
+                            <td  style="background-color: #e1ffe7; min-width: 150px;">{{order.created_date}}</td>
+                            <td  style="background-color: #e1ffe7;">{{order.total_price}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+
+
+        
+
+    </section>
+
+
+    
+{% endblock %}

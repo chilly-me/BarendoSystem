@@ -1,0 +1,47 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}
+    Orders | Pre-paid
+{% endblock %}
+
+{% block content %}
+{% include 'common/navigation.html' %}
+    <div class="col-12 mx-auto text-center my-1">
+        <h2><u>Order by {{order.user}}</u></h5>
+    </div>
+    <div class="col-10 col-md-8 p-3 mx-auto justify-content-start row" style="background-color: #e8f7ec;">
+        <div class="col-12 col-md-6">
+            <h4><u>User</u>:</h4>
+            <p>Username: {{order.user.username}}</p>
+            <p>Name: {{order.user.first_name}} {{order.user.last_name}}</p>
+            <p>Email: {{order.user.email}}</p>
+            <p>Phone: {{order.phone}}</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <h4><u>Products</u>:</h4>
+            {% for item in order_items %}
+                <h6><strong>{{item.product.product_name}}</strong></h6>
+                <p>Quantity: {{item.quantity}}</p>
+                <p>Price: Ksh. {{item.price}}</p>
+            {% endfor %}
+        </div>
+        <div class="col-12 col-md-6 mx-auto">
+            <div class="d-flex justify-content-between">
+                <form action="{% url 'order:specific-order' order.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-success" type="submit">
+                        Shipped
+                    </button>
+                </form>
+                
+                <form action="{% url 'order:cancel-order' order.id %}" method="post">
+                    {% csrf_token %}
+                        <button class="btn btn-outline-danger" type="submit">
+                            Cancel Order
+                        </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+import datetime
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from CAuthentication.forms import UpdateProfile
 from CAuthentication.models import Profile
@@ -118,3 +119,49 @@ def payment_processing(request):
     cart.empty_cart()
     return redirect(reverse('payment:paypal', kwargs={'order_id': new_order.id}))
 
+def pre_paid_pending_orders(request):
+    orders = Order.objects.filter(payment_date="Pay now", status="Pending")
+    context = {
+        "orders": orders
+    }
+    return render(request, "order/pre-paid-pending-orders.html", context)
+
+def pay_on_delivery_pending_orders(request):
+    orders = Order.objects.filter(payment_date="Pay upon delivery", status="Pending")
+    context = {
+        "orders": orders
+    }
+    return render(request, "order/pay-on-delivery-pending-orders.html", context)
+
+def specific_order(request, order_id):
+    order = Order.objects.get(pk=order_id)
+    orderItems = OrderItem.objects.filter(order__id=order_id)
+
+    if request.method == 'POST':
+        order = get_object_or_404(Order, id=order_id)
+        order.shipped = True
+        order.status = "Shipped"
+        order.shipped_date = datetime.datetime.now()
+        order.save()
+        return redirect("CAuthentication:home")
+
+    return render(request, "order/order.html", {"order": order, "order_items": orderItems})
+
+
+def shipped_orders(request):
+    orders = Order.objects.filter(status="Shipped")
+    return render(request, "order/shipped-orders.html", {"orders":orders})
+
+def cancel_order(request, order_id):
+    if request.method == 'POST':
+        order = get_object_or_404(Order, id=order_id)
+        order.status = "Cancelled"
+        order.cancelled_date = datetime.datetime.now()
+        order.save()
+        return redirect("CAuthentication:home")
+    else: 
+        return redirect("store:store")
+
+def cancelled_orders(request):
+    orders = Order.objects.filter(status="Cancelled")
+    return render(request, "order/Cancelled-orders.html", {"orders":orders})

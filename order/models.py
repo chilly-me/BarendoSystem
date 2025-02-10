@@ -35,6 +35,7 @@ class Order(models.Model):
     products = models.ManyToManyField(Product, through='OrderItem')
     created_date = models.DateTimeField(default=timezone.now)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    shipped = models.BooleanField(null=True, blank=True, default=False )
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pending')
 
     shipped_date = models.DateTimeField(null=True, blank=True)

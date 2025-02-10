@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="align-content-center position-sticky top-0 overflow-hidden"
+<div class="align-content-center position-sticky top-0 overflow-visible"
      style="height: 80px; background-color: #ffffff; z-index: 1000; width: 100%; position: relative;">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container px-2 d-flex align-items-center">
@@ -60,14 +60,39 @@
                                      alt="..."/>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item me-md-4">
                             <a class="nav-link active nav_item_text d-flex justify-content-between align-items-center"
                                href="#">
                                 Account
-                                <img src="{% static 'svg/account-settings-svgrepo-com.svg' %}"
+                                <img src="{% static 'svg/account-avatar-person-svgrepo-com.svg' %}"
                                      alt="..."/>
                             </a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link active nav_item_text d-flex justify-content-between align-items-center" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Admin
+                                <img src="{% static 'svg/account-settings-svgrepo-com.svg' %}"
+                                     alt="..."/>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="position: absolute; z-index: 800;">
+                                <li class="dropdown-submenu position-relative">
+                                    <a class="dropdown-item dropdown-toggle" href="#" id="pendingOrdersDropdown" role="button">
+                                        Pending Orders
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'order:pre-paid-pending-orders' %}">Pre-paid Orders</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'order:pay-on-delivery-pending-orders' %}">Pay-on-Delivery</a></li>
+                                    </ul>
+                                </li>
+                                <hr class="my-1 py-0">
+                                <li><a class="dropdown-item" href="{% url 'order:cancelled-orders' %}">Cancelled Orders</a></li>
+                                <hr class="my-1 py-0">
+                                <li><a class="dropdown-item" href="{% url 'order:shipped-orders' %}">Shipped Orders</a></li>
+                                <hr class="my-1 py-0">
+                                <li><a class="dropdown-item" href="#">Delivered Orders</a></li>
+                            </ul>
+                        </li>
+
                     </ul>
 
 
@@ -86,6 +111,29 @@
 
 <!-- Custom Styles -->
 <style>
+    .dropdown-submenu .dropdown-menu {
+    display: none;
+    }
+
+    /* Show submenu when .show is applied */
+    .dropdown-submenu .dropdown-menu.show {
+        display: block;
+    }
+
+    /* Default behavior: Submenu appears below */
+    .dropdown-submenu .dropdown-menu {
+        left: 0;
+        top: 100%; /* Places it below */
+    }
+
+/* On small screens (<768px), keep dropdowns inline */
+@media (max-width: 767px) {
+    .dropdown-submenu .dropdown-menu {
+        left: 100%;
+        top: 0;
+    }
+}
+
     @media (max-width: 991.98px) {
         /* Slide-in navbar from the right on small screens */
         .navbar-collapse {
@@ -166,7 +214,6 @@
         .nav-link img {
             width: 20px;
             height: 20px;
-            filter: ;
         }
     }
 
@@ -227,3 +274,29 @@
     }
 
 </style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    let dropdowns = document.querySelectorAll(".dropdown-submenu > a");
+
+    dropdowns.forEach(function (dropdown) {
+        dropdown.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            let submenu = this.nextElementSibling;
+            if (submenu) {
+                submenu.classList.toggle("show");
+            }
+        });
+    });
+
+    document.addEventListener("click", function (e) {
+        let openSubmenus = document.querySelectorAll(".dropdown-menu.show");
+        openSubmenus.forEach(function (submenu) {
+            if (!submenu.parentElement.contains(e.target)) {
+                submenu.classList.remove("show");
+            }
+            });
+        });
+    });
+</script>
