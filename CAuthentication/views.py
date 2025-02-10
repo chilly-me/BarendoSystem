@@ -15,6 +15,7 @@ def home(request):
 
 
 def login_page(request):
+    print("In loggin in view")
     if request.method == 'POST':
         username = request.POST['UsernameField']
         password = request.POST['passwordField']

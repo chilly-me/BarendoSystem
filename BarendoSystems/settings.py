@@ -187,7 +187,7 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Remember to change back the media_root
-# MEDIA_ROOT = '/vol/web/media/'
+# MEDIA_ROOT = '/vol/web/media/' 
 # Development Settings
 
 MEDIA_URL = '/media/'
