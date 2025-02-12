@@ -87,13 +87,12 @@ def mpesa_callback(request):
 
             print(f"Received the code: {code} successfully")
 
-            return redirect("CAuthentication:home")
+            return JsonResponse({"message": "Callback received successfully"}, status=200)
+
         except json.JSONDecodeError:
-            print(f"Error parsing data from json")
-            print(f"{request}")
-            return redirect("store:store")
-    else:
-        return redirect("cart:cart_home")
+            return JsonResponse({"error": "Invalid JSON"}, status=400)
+
+    return JsonResponse({"error": "Invalid request method"}, status=405)
 
 
 
