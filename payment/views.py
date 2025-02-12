@@ -22,7 +22,8 @@ def mpesaPayment(request):
     stk_password = base64.b64encode(f"{shortCode}{passkey}{timestamp}".encode()).decode()
     host = request.get_host()
     call_back_url = f"{host}/payment/mpesa_callback/"
-
+    print(f"In mpesa payment view")
+    print(f"This is the current host: {host}")
     body =  {
                 "BusinessShortCode": 174379,
                 "Password": stk_password,
@@ -79,6 +80,7 @@ def paymentSuccess(request, order_id):
 
 @csrf_exempt
 def mpesa_callback(request):
+    print(f"In mpesa_callback")
     print(f"{request}")
     if request.method == "POST":
         try:
