@@ -9,4 +9,5 @@ urlpatterns = [
     path('paypal/<int:order_id>/', views.paypalPayment, name='paypal'),
     path('paymentSuccess/<int:order_id>/', views.paymentSuccess, name="payment-success"),
     path('paymentFail/<int:order_id>/', views.paymentPaymentFailure, name="payment-failure"),
+    path('mpesa_callback/', views.mpesa_callback, name="mpesa_callback")
 ]

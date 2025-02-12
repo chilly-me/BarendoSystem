@@ -1,0 +1,55 @@
+[1mdiff --git a/BarendoSystems/settings.py b/BarendoSystems/settings.py[m
+[1mindex 4b2cf37..2d794a0 100644[m
+[1m--- a/BarendoSystems/settings.py[m
+[1m+++ b/BarendoSystems/settings.py[m
+[36m@@ -26,7 +26,7 @@[m [mDEBUG = True[m
+ [m
+ ALLOWED_HOSTS = ["13.247.117.43", "localhost", "127.0.0.1", "chillyme.shop", "www.chillyme.shop"][m
+ [m
+[31m-SITE_ID = 3[m
+[32m+[m[32mSITE_ID = 2[m
+ [m
+ # Application definition[m
+ [m
+[36m@@ -131,8 +131,8 @@[m [mDATABASES = {[m
+         'ENGINE': 'django.db.backends.postgresql',[m
+         'NAME': 'postgres',[m
+         'USER': 'postgres',[m
+[31m-        'PASSWORD': 'ABC/abc/123',[m
+[31m-        'HOST': 'localhost',[m
+[32m+[m[32m        'PASSWORD': 'postgres',[m
+[32m+[m[32m        'HOST': 'db',[m
+         'PORT': 5432[m
+     }[m
+ }[m
+[36m@@ -187,11 +187,11 @@[m [mLOGIN_REDIRECT_URL = '/'[m
+ LOGOUT_REDIRECT_URL = '/'[m
+ [m
+ # Remember to change back the media_root[m
+[31m-# MEDIA_ROOT = '/vol/web/media/' [m
+[32m+[m[32m# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')[m
+ # Development Settings[m
+ [m
+ MEDIA_URL = '/media/'[m
+[31m-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')[m
+[32m+[m[32mMEDIA_ROOT = '/vol/web/media/'[m[41m [m
+ [m
+ PAYPAL_RECEIVER_EMAIL = "sb-jmgdq37560005@business.example.com"[m
+ PAYPAL_TEST = True # in development[m
+[1mdiff --git a/BarendoSystems/urls.py b/BarendoSystems/urls.py[m
+[1mindex c826a6f..fe692d2 100644[m
+[1m--- a/BarendoSystems/urls.py[m
+[1m+++ b/BarendoSystems/urls.py[m
+[36m@@ -31,5 +31,5 @@[m [murlpatterns = [[m
+ ][m
+ [m
+ # serving static files in development[m
+[31m-if settings.DEBUG:[m
+[31m-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)[m
+\ No newline at end of file[m
+[32m+[m[32m# if settings.DEBUG:[m
+[32m+[m[32m#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)[m
+\ No newline at end of file[m
+[1mdiff --git a/requirements.txt b/requirements.txt[m
+[1mindex bf1ce94..0ae8b66 100644[m
+Binary files a/requirements.txt and b/requirements.txt differ

@@ -2,12 +2,17 @@ from order.models import Order
 from . import MpesaAuthorization
 from django.conf import settings
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from paypal.standard.forms import PayPalPaymentsForm
 from django.urls import reverse
 import uuid, datetime, base64
 from django.http import HttpResponse
 import requests
+
+# Handles API POST request
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 # Create your views here.
 def mpesaPayment(request):
@@ -70,5 +75,23 @@ def paymentPaymentFailure(request, order_id):
 
 def paymentSuccess(request, order_id):
     return HttpResponse(f"Success {order_id}")
+
+
+@csrf_exempt
+def mpesa_callback(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body)
+
+            code = data.get('code')
+
+            print(f"Received the code: {code} successfully")
+
+            return redirect("CAuthentication:home")
+        except json.JSONDecodeError:
+            print(f"Error parsing data from json")
+            print(f"{request}")
+            return redirect("store:store")
+
 
 
