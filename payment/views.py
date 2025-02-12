@@ -20,9 +20,9 @@ def mpesaPayment(request):
     passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
     shortCode = "174379"
     stk_password = base64.b64encode(f"{shortCode}{passkey}{timestamp}".encode()).decode()
+    host = request.get_host()
+    call_back_url = f"{host}/payment/mpesa_callback/"
 
-
-      
     body =  {
                 "BusinessShortCode": 174379,
                 "Password": stk_password,
@@ -32,7 +32,7 @@ def mpesaPayment(request):
                 "PartyA": 254799359792,
                 "PartyB": 174379,
                 "PhoneNumber": 254799359792,
-                "CallBackURL": "https://mydomain.com/path",
+                "CallBackURL": call_back_url,
                 "AccountReference": "BarendoSystems",
                 "TransactionDesc": "test" 
             }
@@ -55,15 +55,15 @@ def paypalPayment(request, order_id):
     products = [item.product.product_name for item in order.orderitem_set.all()]
     host = request.get_host()
     paypal_checkout = {
-    'business': settings.PAYPAL_RECEIVER_EMAIL,
-    'amount': amount,
-    'no_shipping': '2',
-    'item_name': ", ".join(products),
-    'invoice': str(uuid.uuid4()),
-    'currency_code': 'USD',
-    'notify_url': f"http://{host}{reverse('paypal-ipn')}",
-    'return_url': f"http://{host}{reverse('payment:payment-success', kwargs = {'order_id': order_id})}",
-    'cancel_url': f"http://{host}{reverse('payment:payment-failure', kwargs = {'order_id': order_id})}",
+        'business': settings.PAYPAL_RECEIVER_EMAIL,
+        'amount': amount,
+        'no_shipping': '2',
+        'item_name': ", ".join(products),
+        'invoice': str(uuid.uuid4()),
+        'currency_code': 'USD',
+        'notify_url': f"http://{host}{reverse('paypal-ipn')}",
+        'return_url': f"http://{host}{reverse('payment:payment-success', kwargs = {'order_id': order_id})}",
+        'cancel_url': f"http://{host}{reverse('payment:payment-failure', kwargs = {'order_id': order_id})}",
     }
 
     paypal_payment = PayPalPaymentsForm(initial=paypal_checkout)
@@ -79,13 +79,12 @@ def paymentSuccess(request, order_id):
 
 @csrf_exempt
 def mpesa_callback(request):
+    print(f"{request}")
     if request.method == "POST":
         try:
             data = json.loads(request.body)
 
-            code = data.get('code')
-
-            print(f"Received the code: {code} successfully")
+            print(f"The data receiverd: {data}")
 
             return JsonResponse({"message": "Callback received successfully"}, status=200)
 
