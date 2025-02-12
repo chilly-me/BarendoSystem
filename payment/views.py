@@ -21,7 +21,7 @@ def mpesaPayment(request):
     shortCode = "174379"
     stk_password = base64.b64encode(f"{shortCode}{passkey}{timestamp}".encode()).decode()
     host = request.get_host()
-    call_back_url = f"{host}/payment/mpesa_callback/"
+    call_back_url = f"https://{host}/payment/mpesa_callback/"
     print(f"In mpesa payment view")
     print(f"This is the current host: {host}")
     body =  {
