@@ -92,6 +92,8 @@ def mpesa_callback(request):
             print(f"Error parsing data from json")
             print(f"{request}")
             return redirect("store:store")
+    else:
+        return redirect("cart:cart_home")
 
 
 
