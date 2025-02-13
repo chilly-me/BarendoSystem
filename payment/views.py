@@ -15,6 +15,10 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 # Create your views here.
+def mpesa_page(request):
+    return render(request, 'payment/MpesaPayment.html', {})
+
+
 def mpesaPayment(request):
     timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
@@ -25,7 +29,7 @@ def mpesaPayment(request):
     print(f"In mpesa payment view")
     print(f"This is the current host: {host}")
     body =  {
-                "BusinessShortCode": 174379,
+                "BusinessShortCode": shortCode,
                 "Password": stk_password,
                 "Timestamp": timestamp,
                 "TransactionType": "CustomerPayBillOnline",
@@ -46,9 +50,9 @@ def mpesaPayment(request):
     url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
 
     response = requests.post(url, json=body, headers=headers)
-    print(response.json())
+    print(response)
+    return HttpResponse("Mpesa")
 
-    return render(request, 'payment/MpesaPayment.html', {})
 
 def paypalPayment(request, order_id):
     order = Order.objects.get(pk=order_id)
@@ -96,4 +100,27 @@ def mpesa_callback(request):
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
 
+
+def mpesa_query(request, request_id):
+    url = "https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query"
+
+    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
+    shortCode = "174379"
+    stk_password = base64.b64encode(f"{shortCode}{passkey}{timestamp}".encode()).decode()
+
+    body = {
+        "BusinessShortCode" : shortCode,
+        "Password" : stk_password,
+        "Timestamp" : timestamp,
+        "CheckoutRequestID": request_id
+    }
+    token = MpesaAuthorization.generate_access_token()
+    headers = {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    }
+    response = requests.post(url, json=body, headers=headers)
+    print(response.json())
+    return HttpResponse("Still Processing")
 

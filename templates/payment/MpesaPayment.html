@@ -14,6 +14,38 @@
         <img src="{% static 'svg/M-PESA.png' %}" alt="" style="width: 125px; height: auto;" class="py-3">
         <h4>Complete Payment Using MPESA</h4>
         <hr>
+        <h6>Total Amount to be debitted: <strong>Ksh. 4000</strong></h6>
+        <br>
+        <p>Paying with <strong>25471241341</strong>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" style="text-decoration: none;">Change?</a></p>
+        <br>
+        <a href="{% url 'payment:mpesa_payment' %}">
+            <button class="btn btn-outline-success" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                Pay <img src="{% static 'svg/icons8-mpesa.svg' %}" alt="" style="height: 20px;">
+            </button>
+        </a>
+            
+        <!-- Loading Modal -->
+        <!-- Cancelled Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header d-flex justify-content-center ">
+                <h5 class="modal-title" id="exampleModalLongTitle">Status&nbsp;&nbsp;&nbsp;&nbsp;<img src="{% static 'svg/M-PESA.png' %}" alt="" style="height: 25px;"></h5>
+                <!-- <button type="button" class="btn-close" aria-label="Close"></button> -->
+
+                </div>
+                <div class="modal-body">
+                    <img src="{% static 'svg/cancel-svgrepo-com.svg' %}" alt="" style="height: 80px;">
+                    <br><br>
+                    <p>There was an error. Please try again</p>
+                </div>
+                <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+            </div>
+        </div>
     </div>    
 </section>
 
