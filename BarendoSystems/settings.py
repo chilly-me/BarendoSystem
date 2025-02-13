@@ -131,8 +131,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': 'ABC/abc/123',
-        'HOST': 'localhost',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
         'PORT': 5432
     }
 }
@@ -187,11 +187,12 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Remember to change back the media_root
-# MEDIA_ROOT = '/vol/web/media/' 
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Development Settings
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/vol/web/media/' 
+
 
 
 PAYPAL_RECEIVER_EMAIL = "sb-jmgdq37560005@business.example.com"
