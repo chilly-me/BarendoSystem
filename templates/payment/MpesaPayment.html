@@ -105,9 +105,10 @@
                                     request_id: response.request_id
                                 },
                                 success: function (statusResponse) {
+                                    const resultCode = statusResponse.ResponseCode.ResultCode;
                                     const resultDesc = statusResponse.ResultDesc || "Payment failed. Please try again.";
 
-                                    if (statusResponse.ResponseCode === "0") {
+                                    if (resultCode === "0") {
                                         console.log("In success block");
                                         clearInterval(interval);
                                         $(".modal-body").html(`
@@ -116,13 +117,17 @@
                                         `);
                                     } else if (statusResponse.errorCode === "500.001.1001") {
                                         console.log("Payment is still being processed...");
-                                    } else if (statusResponse.ResponseCode){
+                                    } else if (resultCode){
                                         console.log("In other block");
 
                                         clearInterval(interval);
                                         $(".modal-body").html(`
-                                            <p>Processed unSuccessful</p>
-                                            <p>${statusResponse.ResultDesc}</p>
+                                            <img src="{% static 'svg/cancel-svgrepo-com.svg' %}" alt="" style="height: 80px;">
+                                                <br><br>
+                                            <p>There was an error:</p>
+                                            <br>
+                                            <p>${resultDesc}</p>
+                                            <p> Please try again </p>
                                         `);
                                     }
                                 },
