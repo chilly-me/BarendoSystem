@@ -7,6 +7,7 @@ app_name='payment'
 urlpatterns = [
     path('mpesa-page/', views.mpesa_page, name='mpesa_page'),
     path('mpesa-payment/', views.mpesaPayment, name='mpesa_payment'),
+    path('mpesa-status', views.mpesa_query, name="check_payment_status"),
     path('paypal/<int:order_id>/', views.paypalPayment, name='paypal'),
     path('paymentSuccess/<int:order_id>/', views.paymentSuccess, name="payment-success"),
     path('paymentFail/<int:order_id>/', views.paymentPaymentFailure, name="payment-failure"),

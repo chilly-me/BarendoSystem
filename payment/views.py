@@ -14,44 +14,61 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+from django.http import JsonResponse
+import random
+
+# def mpesaPayment(request):
+#     if request.method == "POST":
+#         request_id = "1234567890"  # Replace with actual API response
+#         return JsonResponse({"request_id": request_id})
+
+# def check_payment_status(request):
+#     if request.method == "POST":
+#         request_id = request.POST.get("request_id")
+#         status = random.choice(["Pending", "Success", "Failed"])  # Simulating API response
+#         return JsonResponse({"status": status})
+
 # Create your views here.
 def mpesa_page(request):
     return render(request, 'payment/MpesaPayment.html', {})
 
 
 def mpesaPayment(request):
-    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
-    shortCode = "174379"
-    stk_password = base64.b64encode(f"{shortCode}{passkey}{timestamp}".encode()).decode()
-    host = request.get_host()
-    call_back_url = f"https://{host}/payment/mpesa_callback/"
-    print(f"In mpesa payment view")
-    print(f"This is the current host: {host}")
-    body =  {
-                "BusinessShortCode": shortCode,
-                "Password": stk_password,
-                "Timestamp": timestamp,
-                "TransactionType": "CustomerPayBillOnline",
-                "Amount": 1,
-                "PartyA": 254799359792,
-                "PartyB": 174379,
-                "PhoneNumber": 254799359792,
-                "CallBackURL": call_back_url,
-                "AccountReference": "BarendoSystems",
-                "TransactionDesc": "test" 
-            }
-    token = MpesaAuthorization.generate_access_token()
-    headers = {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json'
-    }
+    if request.method == "POST":
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
+        shortCode = "174379"
+        stk_password = base64.b64encode(f"{shortCode}{passkey}{timestamp}".encode()).decode()
+        host = request.get_host()
+        call_back_url = f"https://{host}/payment/mpesa_callback/"
+        print(f"In mpesa payment view")
+        print(f"This is the current host: {host}")
+        body =  {
+                    "BusinessShortCode": shortCode,
+                    "Password": stk_password,
+                    "Timestamp": timestamp,
+                    "TransactionType": "CustomerPayBillOnline",
+                    "Amount": 1,
+                    "PartyA": 254799359792,
+                    "PartyB": 174379,
+                    "PhoneNumber": 254799359792,
+                    "CallBackURL": call_back_url,
+                    "AccountReference": "BarendoSystems",
+                    "TransactionDesc": "test" 
+                }
+        token = MpesaAuthorization.generate_access_token()
+        headers = {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
+        }
 
-    url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
+        url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
 
-    response = requests.post(url, json=body, headers=headers)
-    print(response)
-    return HttpResponse("Mpesa")
+        response = requests.post(url, json=body, headers=headers)
+        response_dict = json.loads(response)
+        print(response_dict)
+        CheckoutRequestID = response_dict["body"]["CheckoutRequestID"]
+        return JsonResponse({"request_id":CheckoutRequestID})
 
 
 def paypalPayment(request, order_id):
@@ -101,26 +118,29 @@ def mpesa_callback(request):
 
 
 
-def mpesa_query(request, request_id):
-    url = "https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query"
+def mpesa_query(request):
+    if request.method == "POST":
+        print("In query block")
+        request_id = request.POST.get("request_id")
+        url = "https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query"
 
-    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-    passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
-    shortCode = "174379"
-    stk_password = base64.b64encode(f"{shortCode}{passkey}{timestamp}".encode()).decode()
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
+        shortCode = "174379"
+        stk_password = base64.b64encode(f"{shortCode}{passkey}{timestamp}".encode()).decode()
 
-    body = {
-        "BusinessShortCode" : shortCode,
-        "Password" : stk_password,
-        "Timestamp" : timestamp,
-        "CheckoutRequestID": request_id
-    }
-    token = MpesaAuthorization.generate_access_token()
-    headers = {
-        'Authorization': 'Bearer ' + token,
-        'Content-Type': 'application/json'
-    }
-    response = requests.post(url, json=body, headers=headers)
-    print(response.json())
-    return HttpResponse("Still Processing")
+        body = {
+            "BusinessShortCode" : shortCode,
+            "Password" : stk_password,
+            "Timestamp" : timestamp,
+            "CheckoutRequestID": request_id
+        }
+        token = MpesaAuthorization.generate_access_token()
+        headers = {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
+        }
+        response = requests.post(url, json=body, headers=headers)
+        print("The response given {}".format(response))
+        return JsonResponse(response)
 
