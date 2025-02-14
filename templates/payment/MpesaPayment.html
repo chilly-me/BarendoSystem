@@ -109,7 +109,7 @@
 
                                     if (statusResponse.ResponseCode === "0") {
                                         console.log("In success block");
-                                        clearInterval(timer);
+                                        clearInterval(interval);
                                         $(".modal-body").html(`
                                             <p>Processed Successfully</p>
                                             <p>${statusResponse.ResultDesc}</p>
@@ -119,7 +119,7 @@
                                     } else if (statusResponse.ResponseCode){
                                         console.log("In other block");
 
-                                        clearInterval(timer);
+                                        clearInterval(interval);
                                         $(".modal-body").html(`
                                             <p>Processed unSuccessful</p>
                                             <p>${statusResponse.ResultDesc}</p>
