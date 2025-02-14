@@ -28,6 +28,7 @@ ALLOWED_HOSTS = ["13.247.117.43", "localhost", "127.0.0.1", "chillyme.shop", "ww
 
 SITE_ID = 2
 
+CSRF_TRUSTED_ORIGINS = [ "https://chillyme.shop", "https://www.chillyme.shop" ]
 # Application definition
 
 INSTALLED_APPS = [

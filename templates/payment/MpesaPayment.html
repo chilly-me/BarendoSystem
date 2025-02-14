@@ -18,26 +18,29 @@
         <br>
         <p>Paying with <strong>25471241341</strong>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" style="text-decoration: none;">Change?</a></p>
         <br>
-        <a href="{% url 'payment:mpesa_payment' %}">
-            <button class="btn btn-outline-success" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                Pay <img src="{% static 'svg/icons8-mpesa.svg' %}" alt="" style="height: 20px;">
-            </button>
-        </a>
+        <!--data-bs-toggle="modal" data-bs-target="#exampleModalCenter"-->
+        <button id="pay-button" class="btn btn-outline-success" type="button" >
+            Pay <img src="{% static 'svg/icons8-mpesa.svg' %}" alt="" style="height: 20px;">
+        </button>
+            
+        {% if request_id %}
+            <p>{{ request_id }}</p>
+        {% endif %}
             
         <!-- Loading Modal -->
-        <!-- Cancelled Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="exampleModalCenter" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content text-center">
                 <div class="modal-header d-flex justify-content-center ">
                 <h5 class="modal-title" id="exampleModalLongTitle">Status&nbsp;&nbsp;&nbsp;&nbsp;<img src="{% static 'svg/M-PESA.png' %}" alt="" style="height: 25px;"></h5>
                 <!-- <button type="button" class="btn-close" aria-label="Close"></button> -->
-
+        
                 </div>
                 <div class="modal-body">
-                    <img src="{% static 'svg/cancel-svgrepo-com.svg' %}" alt="" style="height: 80px;">
-                    <br><br>
-                    <p>There was an error. Please try again</p>
+                    <div class="spinner-border" style="color: #097302; " role="status">
+                        <span class="sr-only"></span>
+                      </div>
+                    <p>Received Successfuly for processing, enter your PIN to authenticate</p>
                 </div>
                 <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -48,6 +51,100 @@
         </div>
     </div>    
 </section>
+
+<script>
+    $(document).ready(function () {
+        $("#pay-button").click(function () {
+            // Show the modal immediately
+            $("#exampleModalCenter").modal("show");
+            $(".modal-body").html(`
+                <div class="spinner-border" style="color: #097302; " role="status">
+                    <span class="sr-only"></span>
+                </div>
+                 
+            `);
+
+            // Send AJAX request to initiate payment
+            $.ajax({
+                url: "{% url 'payment:mpesa_payment' %}",  // Your Django view URL
+                type: "POST",
+                data: {
+                    csrfmiddlewaretoken: "{{ csrf_token }}", // CSRF protection
+                },
+                success: function (response) {
+                    if (response.request_id) {
+                        // Update modal with request ID
+                        $(".modal-body").html(`
+                            <div class="spinner-border" style="color: #097302; " role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                            <p>Received Successfuly for processing, enter your PIN to authenticate</p>
+                  
+                        `);
+
+                        let attempts = 0;
+                        let maxAttempts = 5; // Stop checking after 5 attempts (~2.5 minutes)
+                        
+                        let interval = setInterval(function () {
+                            if (attempts >= maxAttempts) {
+                                clearInterval(interval);
+                                $(".modal-body").html(`
+                                    <p>Payment status check timed out. Please try again.</p>
+                                `);
+                                location.reload()
+                                return;
+                            }
+
+                            // Send AJAX request to check payment status
+                            $.ajax({
+                                url: "{% url 'payment:check_payment_status' %}", // View to check payment status
+                                type: "POST",
+                                data: {
+                                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                                    request_id: response.request_id
+                                },
+                                success: function (statusResponse) {
+                                    const resultCode = statusResponse.status.resultCode;
+                                    const resultDesc = statusResponse.status.ResultDesc || "Payment failed. Please try again.";
+
+                                    if (data.status.errorCode === "500.001.1001") {
+                                        console.log("Payment is still being processed...");
+                                    } else if (resultCode === "0") {
+                                        console.log("In success block");
+                                        clearInterval(timer);
+                                        $(".modal-body").html(`
+                                            <p>Processed Successfully</p>
+                                            <p>${resultDesc}</p>
+                                        `);
+                                    } else if (resultCode){
+                                        console.log("In other block");
+
+                                        clearInterval(timer);
+                                        $(".modal-body").html(`
+                                            <p>Processed unSuccessful</p>
+                                            <p>${resultDesc}</p>
+                                        `);
+                                    }
+                                },
+                                error: function () {
+                                    $(".modal-body").html("<p>Error checking payment status. Please try again.</p>");
+                                }
+                            });
+
+                            attempts++;
+                        }, 2000); // Call API every 2 seconds
+
+                    } else {
+                        $(".modal-body").html("<p>Failed to initiate payment. Try again.</p>");
+                    }
+                },
+                error: function () {
+                    $(".modal-body").html("<p>Payment request failed. Please try again.</p>");
+                }
+            });
+        });
+    });
+</script>
 
 
 {% endblock %}
