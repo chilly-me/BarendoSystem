@@ -67,7 +67,7 @@ def mpesaPayment(request):
         response = requests.post(url, json=body, headers=headers)
         response_dict = response.json()  
         print(response_dict)
-        CheckoutRequestID = response_dict["body"]["CheckoutRequestID"]
+        CheckoutRequestID = response_dict["CheckoutRequestID"]
         return JsonResponse({"request_id":CheckoutRequestID})
 
 
