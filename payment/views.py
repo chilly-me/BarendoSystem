@@ -65,7 +65,7 @@ def mpesaPayment(request):
         url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
 
         response = requests.post(url, json=body, headers=headers)
-        response_dict = json.loads(response)
+        response_dict = response.json()  
         print(response_dict)
         CheckoutRequestID = response_dict["body"]["CheckoutRequestID"]
         return JsonResponse({"request_id":CheckoutRequestID})

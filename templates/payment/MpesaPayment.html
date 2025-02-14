@@ -73,6 +73,7 @@
                 },
                 success: function (response) {
                     if (response.request_id) {
+                        console.log("In ");
                         // Update modal with request ID
                         $(".modal-body").html(`
                             <div class="spinner-border" style="color: #097302; " role="status">
