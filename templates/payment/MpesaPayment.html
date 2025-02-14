@@ -105,25 +105,24 @@
                                     request_id: response.request_id
                                 },
                                 success: function (statusResponse) {
-                                    const resultCode = statusResponse.resultCode;
                                     const resultDesc = statusResponse.ResultDesc || "Payment failed. Please try again.";
 
-                                    if (statusResponse.errorCode === "500.001.1001") {
-                                        console.log("Payment is still being processed...");
-                                    } else if (resultCode === "0") {
+                                    if (statusResponse.resultCode === "0") {
                                         console.log("In success block");
                                         clearInterval(timer);
                                         $(".modal-body").html(`
                                             <p>Processed Successfully</p>
-                                            <p>${resultDesc}</p>
+                                            <p>${statusResponse.ResultDesc}</p>
                                         `);
-                                    } else if (resultCode){
+                                    } else if (statusResponse.errorCode === "500.001.1001") {
+                                        console.log("Payment is still being processed...");
+                                    } else if (statusResponse.resultCode){
                                         console.log("In other block");
 
                                         clearInterval(timer);
                                         $(".modal-body").html(`
                                             <p>Processed unSuccessful</p>
-                                            <p>${resultDesc}</p>
+                                            <p>${statusResponse.ResultDesc}</p>
                                         `);
                                     }
                                 },
