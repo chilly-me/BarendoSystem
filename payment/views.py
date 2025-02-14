@@ -141,6 +141,6 @@ def mpesa_query(request):
             'Content-Type': 'application/json'
         }
         response = requests.post(url, json=body, headers=headers)
-        print("The response given {}".format(response))
-        return JsonResponse(response)
+        print("The response given {}".format(response.json()))
+        return JsonResponse(response.json())
 
