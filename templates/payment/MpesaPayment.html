@@ -84,7 +84,7 @@
                         `);
 
                         let attempts = 0;
-                        let maxAttempts = 30; // Stop checking after 5 attempts (~2.5 minutes)
+                        let maxAttempts = 30; // Stop checking after 30 attempts (~2.5 minutes)
                         
                         let interval = setInterval(function () {
                             if (attempts >= maxAttempts) {
@@ -105,10 +105,10 @@
                                     request_id: response.request_id
                                 },
                                 success: function (statusResponse) {
-                                    const resultCode = statusResponse.status.resultCode;
-                                    const resultDesc = statusResponse.status.ResultDesc || "Payment failed. Please try again.";
+                                    const resultCode = statusResponse.resultCode;
+                                    const resultDesc = statusResponse.ResultDesc || "Payment failed. Please try again.";
 
-                                    if (data.status.errorCode === "500.001.1001") {
+                                    if (statusResponse.errorCode === "500.001.1001") {
                                         console.log("Payment is still being processed...");
                                     } else if (resultCode === "0") {
                                         console.log("In success block");
