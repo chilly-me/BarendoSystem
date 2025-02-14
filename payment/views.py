@@ -120,6 +120,7 @@ def mpesa_callback(request):
 
 def mpesa_query(request):
     if request.method == "POST":
+        print("In query block")
         request_id = request.POST.get("request_id")
         url = "https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query"
 
@@ -140,5 +141,6 @@ def mpesa_query(request):
             'Content-Type': 'application/json'
         }
         response = requests.post(url, json=body, headers=headers)
+        print("The response given {}".format(response))
         return JsonResponse(response)
 
