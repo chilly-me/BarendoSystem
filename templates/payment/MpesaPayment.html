@@ -84,7 +84,7 @@
                         `);
 
                         let attempts = 0;
-                        let maxAttempts = 5; // Stop checking after 5 attempts (~2.5 minutes)
+                        let maxAttempts = 30; // Stop checking after 5 attempts (~2.5 minutes)
                         
                         let interval = setInterval(function () {
                             if (attempts >= maxAttempts) {
